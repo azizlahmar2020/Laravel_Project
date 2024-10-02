@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LogementController;
+use App\Http\Controllers\ElectroController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,13 @@ use App\Http\Controllers\LogementController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::resource('Electros', ElectroController::class);
+// Route pour afficher le formulaire d'édition
+Route::get('electros/{id_electro}/edit', [ElectroController::class, 'edit'])->name('electros.editElectro');
+Route::put('electros/{id_electro}', [ElectroController::class, 'update'])->name('electros.update');
+
+Route::get('electros', [ElectroController::class, 'index'])->name('electros.indexElectro');
+
 Route::resource('Logement',LogementController::class);
 Route::get('/', function () {
     return view('auth.login');

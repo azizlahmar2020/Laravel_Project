@@ -28,6 +28,7 @@ class LogementController extends Controller
        return view ('Logement.CreateLogement');
     }
 
+
     /**
      * Store a newly created resource in storage.
      *

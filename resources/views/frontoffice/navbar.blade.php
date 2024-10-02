@@ -11,7 +11,7 @@
             <a href="/dashboard" class="nav-item nav-link active">Home</a>
             <a href="" class="nav-item nav-link">About</a>
             <a href="/Logement" class="nav-item nav-link">Logement</a>
-            <a href="" class="nav-item nav-link">Electromenager</a>
+            <a href="/Electros" class="nav-item nav-link">Electromenager</a>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                 <div class="dropdown-menu bg-light m-0">
