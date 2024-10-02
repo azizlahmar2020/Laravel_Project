@@ -44,7 +44,12 @@ class LogementController extends Controller
         ]);
 
         $logement = Logement::create($validate_data);
-        return redirect('/Logement')->with('success','done !!');
+        // Dans votre contrôleur après l'ajout ou la modification
+//session(['highlight' => $logement->id]); // Ajoutez cette ligne
+session()->flash('success', 'Logement added successfully!');
+session()->flash('highlight', $logement->id);
+        return redirect('/Logement');
+
 
     }
 
@@ -88,7 +93,11 @@ class LogementController extends Controller
         ]);
 
         Logement::whereId($id)->update($validate_data);
-        return redirect('/Logement')->with('success','Logement updated successfully');
+        // Dans votre contrôleur après l'ajout ou la modification
+//session(['highlight' => $id]); // Ajoutez cette ligne
+session()->flash('success', 'Logement updated successfully!');
+session()->flash('highlight', $id);
+        return redirect()->route('Logement.index');//->with('status', 'Logement updated successfully');
     }
 
     /**
@@ -101,6 +110,8 @@ class LogementController extends Controller
     {
        $logement= Logement::findOrFail($id);
        $logement->delete();
-       return redirect('/Logement')->with('success','Logement deleted successfully');
+       session(['highlight' => $id]); // Ajoutez cette ligne
+
+       return redirect()->route('Logement.index')->with('danger', 'Logement deleted successfully');
     }
 }
