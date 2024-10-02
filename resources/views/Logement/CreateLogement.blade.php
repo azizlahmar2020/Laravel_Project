@@ -49,6 +49,7 @@
     </style>
 </head>
 <body class="custom-background">
+
     <div class="container mt-5 custom-container">
         <h2 class="custom-title"><i class="fas fa-home"></i> Create a New Logement</h2>
 

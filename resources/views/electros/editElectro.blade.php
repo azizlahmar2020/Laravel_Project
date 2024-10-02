@@ -43,6 +43,7 @@
             color: white;
         }
     </style>
+
 </head>
 <body class="custom-background">
 
@@ -83,6 +84,18 @@
             <label for="consomation" class="form-label custom-label"><i class="fas fa-lightbulb icon"></i> Consommation</label>
             <input type="number" class="form-control" id="consomation" name="consomation" value="{{ old('consomation', $electro->consomation) }}" required>
         </div>
+
+        <div class="mb-3">
+        <label for="logement_id" class="form-label custom-label"><i class="fas fa-home icon"></i> Logement</label>
+<select class="form-select" id="logement_id" name="logement_id" required>
+    @foreach($logements as $logement)
+        <option value="{{ $logement->id }}" {{ $electro->logement_id == $logement->id ? 'selected' : '' }}>
+            {{ $logement->address }} <!-- Assurez-vous que 'adress' est correct -->
+        </option>
+    @endforeach
+</select>
+
+</div>
 
         <button type="submit" class="btn btn-submit w-100"><i class="fas fa-paper-plane"></i> Update</button>
         <button type="button" class="btn btn-danger w-100 mt-3" onclick="window.location.href='{{ route('electros.indexElectro') }}'">

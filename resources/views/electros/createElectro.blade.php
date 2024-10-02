@@ -85,7 +85,15 @@
                 <input type="number" class="form-control" id="consomation" name="consomation"  placeholder="Enter the consumption in kWh" >
             </div>
 
+            <div class="mb-3">
+    <label for="logement_id" class="form-label custom-label"><i class="fas fa-home icon"></i> Logement</label>
+    <select name="logement_id" id="logement_id">
+    @foreach($logements as $logement)
+        <option value="{{ $logement->id }}">{{ $logement->address }}</option>
+    @endforeach
+</select>
 
+</div>
 
             <!-- Submit Button -->
             <button type="submit" class="btn btn-submit w-100"><i class="fas fa-paper-plane"></i> Submit</button>
