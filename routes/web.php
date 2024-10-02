@@ -20,6 +20,8 @@ Route::resource('Electros', ElectroController::class);
 // Route pour afficher le formulaire d'édition
 Route::get('electros/{id_electro}/edit', [ElectroController::class, 'edit'])->name('electros.editElectro');
 Route::put('electros/{id_electro}', [ElectroController::class, 'update'])->name('electros.update');
+// Dans routes/web.php
+Route::get('/logement', [LogementController::class, 'index'])->name('Logement.indexLogement');
 
 Route::get('electros', [ElectroController::class, 'index'])->name('electros.indexElectro');
 

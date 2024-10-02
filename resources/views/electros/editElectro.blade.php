@@ -45,7 +45,6 @@
     </style>
 </head>
 <body class="custom-background">
-@include('frontoffice.navbar')
 
 <div class="container mt-5 custom-container">
     <h2 class="custom-title"><i class="fas fa-plug icon"></i> Edit Electro</h2>
@@ -69,6 +68,7 @@
             <input type="text" class="form-control" id="type" name="type" value="{{ old('type', $electro->type) }}" required>
         </div>
 
+
         <div class="mb-3">
             <label for="puissance" class="form-label custom-label"><i class="fas fa-bolt icon"></i> Puissance</label>
             <input type="number" class="form-control" id="puissance" name="puissance" value="{{ old('puissance', $electro->puissance) }}" required>
@@ -84,23 +84,20 @@
             <input type="number" class="form-control" id="consomation" name="consomation" value="{{ old('consomation', $electro->consomation) }}" required>
         </div>
 
-        <button type="submit" class="btn btn-submit w-100"><i class="fas fa-paper-plane"></i> Mettre à jour</button>
+        <button type="submit" class="btn btn-submit w-100"><i class="fas fa-paper-plane"></i> Update</button>
+        <button type="button" class="btn btn-danger w-100 mt-3" onclick="window.location.href='{{ route('electros.indexElectro') }}'">
+    <i class="fas fa-times"></i> Cancel
+</button>
+
+
     </form>
 </div>
 
 <!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/isotope/isotope.pkgd.min.js"></script>
-    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
-@include('frontoffice.footer')
 </html>

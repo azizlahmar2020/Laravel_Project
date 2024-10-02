@@ -51,7 +51,7 @@ class ElectroController extends Controller
         // Redirection après succès
       //  return redirect()->route('electros.indexElectro')->with('success', 'Electro créé avec succès!');
       session()->flash('success', 'ElectroMenager added Electro!');
-session()->flash('highlight', $Electro->id_electro);
+      session()->flash('highlight', $Electro->id_electro);
         return redirect('/Electros');
     }
 

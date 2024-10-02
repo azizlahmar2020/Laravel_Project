@@ -42,7 +42,6 @@
 </head>
 <body class="custom-background">
     <!-- Navbar inclusion -->
-    @include('frontoffice.navbar')
 
     <div class="container mt-5 custom-container">
         <h2 class="custom-title"><i class="fas fa-blender"></i> Create a New Electroménager</h2>
@@ -90,6 +89,9 @@
 
             <!-- Submit Button -->
             <button type="submit" class="btn btn-submit w-100"><i class="fas fa-paper-plane"></i> Submit</button>
+            <button type="button" class="btn btn-danger w-100 mt-3" onclick="window.location.href='{{ route('electros.indexElectro') }}'">
+    <i class="fas fa-times"></i> Cancel
+</button>
         </form>
     </div>
 
