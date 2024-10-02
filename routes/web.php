@@ -22,6 +22,7 @@ Route::get('electros/{id_electro}/edit', [ElectroController::class, 'edit'])->na
 Route::put('electros/{id_electro}', [ElectroController::class, 'update'])->name('electros.update');
 // Dans routes/web.php
 Route::get('/logement', [LogementController::class, 'index'])->name('Logement.indexLogement');
+Route::get('/electros/create', [ElectroController::class, 'create'])->name('electros.create');
 
 Route::get('electros', [ElectroController::class, 'index'])->name('electros.indexElectro');
 

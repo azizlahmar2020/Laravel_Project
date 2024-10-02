@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Electro;
+use App\Models\Logement;
 
 class ElectroController extends Controller
 {
@@ -26,8 +27,12 @@ class ElectroController extends Controller
      */
     public function create()
     {
-        return view('electros.createElectro');
+        $logements = Logement::all(); // Récupérer tous les logements
+        return view('electros.createElectro', compact('logements')); // Passer $logements à la vue
     }
+
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -43,15 +48,15 @@ class ElectroController extends Controller
             'puissance' => 'required|numeric|min:0',
             'duree' => 'required|numeric|min:0',
             'consomation' => 'required|numeric|min:0',
+            'logement_id' => 'required|exists:logements,id', // Validate logement_id
         ]);
 
         // Création d'un nouvel electro après validation
-      $Electro=  Electro::create($validated);
+        $Electro = Electro::create($validated);
 
         // Redirection après succès
-      //  return redirect()->route('electros.indexElectro')->with('success', 'Electro créé avec succès!');
-      session()->flash('success', 'ElectroMenager added Electro!');
-      session()->flash('highlight', $Electro->id_electro);
+        session()->flash('success', 'Electro added successfully!');
+        session()->flash('highlight', $Electro->id_electro);
         return redirect('/Electros');
     }
 
@@ -73,11 +78,14 @@ class ElectroController extends Controller
      * @param  int  $id_electro
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_electro)
+    public function edit($id)
     {
-        $electro = Electro::findOrFail($id_electro); // Utilisez la colonne id_electro
-        return view('electros.editElectro', compact('electro'));
+        $electro = Electro::findOrFail($id); // Trouver l'électroménager par ID
+        $logements = Logement::all(); // Récupérer tous les logements
+
+        return view('electros.editElectro', compact('electro', 'logements')); // Passer les données à la vue
     }
+
 
 
 
@@ -89,27 +97,25 @@ class ElectroController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id_electro)
-{
-    // Validation des données
-    $validated = $request->validate([
-        'type' => 'required|string|max:255',
-        'puissance' => 'required|numeric|min:0',
-        'duree' => 'required|numeric|min:0',
-        'consomation' => 'required|numeric|min:0',
-    ]);
+    {
+        // Validation des données
+        $validated = $request->validate([
+            'type' => 'required|string|max:255',
+            'puissance' => 'required|numeric|min:0',
+            'duree' => 'required|numeric|min:0',
+            'consomation' => 'required|numeric|min:0',
+            'logement_id' => 'required|exists:logements,id', // Validate logement_id
+        ]);
 
-    // Mettre à jour l'electro après validation
-    $electro = Electro::findOrFail($id_electro); // Utilisez la colonne id_electro
-    $electro->update($validated);
+        // Mettre à jour l'electro après validation
+        $electro = Electro::findOrFail($id_electro); // Use the id_electro
+        $electro->update($validated);
 
-    // Redirection après succès
-   // return redirect()->route('electros.indexElectro')->with('success', 'Electro mis à jour avec succès!');
-
-session()->flash('success', 'Electro updated successfully!');
-session()->flash('highlight', $id_electro);
+        // Redirection après succès
+        session()->flash('success', 'Electro updated successfully!');
+        session()->flash('highlight', $id_electro);
         return redirect()->route('electros.indexElectro');
-}
-
+    }
 
     /**
      * Remove the specified resource from storage.
