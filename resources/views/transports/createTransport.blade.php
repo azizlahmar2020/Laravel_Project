@@ -21,31 +21,31 @@
         }
         .custom-title {
             text-align: center;
-            color: #17a2b8; /* Bootstrap Info color */
+            color: #4CAF50; /* Bootstrap Info color */
         }
         .custom-label {
             font-weight: bold;
         }
         .icon {
             margin-right: 8px;
-            color: #17a2b8; /* Bootstrap Info color */
+            color: #4CAF50; /* Bootstrap Info color */
         }
         .btn-submit {
-            background-color: #17a2b8; /* Info submit button */
+            background-color: #4CAF50; /* Info submit button */
             color: white;
         }
         .transport-button {
             width: 30%;
             margin: 0 10px;
             text-align: center;
-            border: 2px solid #17a2b8; /* Info border */
+            border: 2px solid #4CAF50; /* Info border */
             border-radius: 8px;
             background: #fff; /* White background */
             cursor: pointer;
             transition: background 0.3s, color 0.3s;
         }
         .transport-button:hover {
-            background: #17a2b8; /* Info on hover */
+            background: #4CAF50; /* Info on hover */
             color: white; /* White text on hover */
         }
     </style>
@@ -124,9 +124,9 @@
             const buttons = document.querySelectorAll('.transport-button');
             buttons.forEach(button => {
                 button.style.background = '#fff'; // Reset background color
-                button.style.color = '#17a2b8'; // Reset text color
+                button.style.color = '#4CAF50'; // Reset text color
             });
-            event.currentTarget.style.background = '#17a2b8'; // Highlight selected button
+            event.currentTarget.style.background = '#4CAF50'; // Highlight selected button
             event.currentTarget.style.color = 'white'; // Change text color for selected button
         }
     </script>
