@@ -1,28 +1,3 @@
-<<<<<<< Updated upstream
-=======
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
-.pagination {
-    font-size: 0.8rem; /* Adjust the size of pagination text */
-}
-
-.page-link {
-    padding: 0.25rem 0.5rem; /* Adjust padding for smaller buttons */
-}
-
-.page-link:hover {
-    background-color: #e9ecef; /* Optional: Change background on hover */
-}
-
-.disabled .page-link {
-    color: #6c757d; /* Optional: Color for disabled links */
-}
-
-.active .page-link {
-    background-color: #007bff; /* Optional: Background for active page */
-    color: #fff; /* Optional: Text color for active page */
-}
->>>>>>> Stashed changes

@@ -575,33 +575,49 @@
     color: var(--primary);
 }
 
-
-.pagination {
-    font-size: 0.75rem; /* Smaller font size for pagination */
+.custom-background {
+    background-color: #f0f8f0;
+    color: #333;
 }
-
-.page-item {
-    margin: 0 2px; /* Space between pagination items */
+.custom-container {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
-.page-link {
-    padding: 0.2rem 0.4rem; /* Smaller padding for pagination links */
-    border-radius: 4px; /* Optional: Rounded corners */
+.custom-title {
+    text-align: center;
+    color: #4CAF50;
+    font-size: 2rem;
 }
-
-.page-link:hover {
-    background-color: #e9ecef; /* Optional: Change background on hover */
+.icon {
+    margin-right: 8px;
+    color: #4CAF50;
 }
-
-.disabled .page-link {
-    color: #6c757d; /* Color for disabled links */
+.table-hover tbody tr:hover {
+    background-color: #f1f2f6;
 }
-
-.active .page-link {
-    background-color: #007bff; /* Background for active page */
-    color: #fff; /* Text color for active page */
+.btn-success, .btn-outline-warning, .btn-outline-danger {
+    transition: all 0.3s ease;
 }
-
-.page-item a {
-    text-decoration: none; /* Remove underline */
+.highlight {
+    background-color: #C3DCDC;
+    color: white;
+}
+@media (max-width: 576px) {
+    .custom-title {
+        font-size: 1.5rem;
+    }
+    .btn {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.8rem;
+    }
+    th, td {
+        font-size: 0.8rem;
+    }
+}
+@media (min-width: 576px) and (max-width: 768px) {
+    th, td {
+        font-size: 0.9rem;
+    }
 }
