@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+@include('frontoffice.navbar')
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logements List</title>
@@ -28,7 +30,6 @@
     </style>
 </head>
 <body class="custom-background">
-@include('frontoffice.navbar')
 
     <div class="container mt-5">
         @if (session()->get('success'))
