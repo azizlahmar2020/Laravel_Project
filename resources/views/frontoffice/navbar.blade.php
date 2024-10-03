@@ -56,11 +56,14 @@
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                 <div class="dropdown-menu bg-light m-0">
-                    <a href="" class="dropdown-item">Feature</a>
-                    <a href="" class="dropdown-item">Free Quote</a>
+                    <a href="/Logement" class="dropdown-item">Logement</a>
+                    <a href="/Electros" class="dropdown-item">Electroménager</a>
                     <a href="" class="dropdown-item">Our Team</a>
                     <a href="" class="dropdown-item">Testimonial</a>
                     <a href="" class="dropdown-item">404 Page</a>
+                    <a href="http://127.0.0.1:8000/fournisseurs" class="dropdown-item">Fournisseurs</a>
+                    <a href="http://127.0.0.1:8000/conseils" class="dropdown-item">Conseils</a>
+
                 </div>
             </div>
             <a href="contact.html" class="nav-item nav-link">Contact</a>
