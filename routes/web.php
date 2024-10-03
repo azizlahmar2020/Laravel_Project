@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+<<<<<<< Updated upstream
+=======
+use App\Http\Controllers\LogementController;
+use App\Http\Controllers\SourceController;
+use App\Http\Controllers\FactureController;
+
+>>>>>>> Stashed changes
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +20,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+<<<<<<< Updated upstream
+=======
+
+Route::resource('source', SourceController::class);
+Route::resource('facture', FactureController::class);
+
+
+
+Route::resource('Logement',LogementController::class);
+>>>>>>> Stashed changes
 Route::get('/', function () {
     return view('welcome');
 });
