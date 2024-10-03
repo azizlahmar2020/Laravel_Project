@@ -68,28 +68,28 @@
 
         <div class="mb-3">
             <label for="type" class="form-label custom-label"><i class="fas fa-plug icon"></i> Type</label>
-            <input type="text" class="form-control" id="type" name="type" value="{{ old('type', $electro->type) }}" required>
+            <input type="text" class="form-control" id="type" name="type" value="{{ old('type', $electro->type) }}" >
         </div>
 
 
         <div class="mb-3">
             <label for="puissance" class="form-label custom-label"><i class="fas fa-bolt icon"></i> Puissance</label>
-            <input type="number" class="form-control" id="puissance" name="puissance" value="{{ old('puissance', $electro->puissance) }}" required>
+            <input type="number" class="form-control" id="puissance" name="puissance" value="{{ old('puissance', $electro->puissance) }}" >
         </div>
 
         <div class="mb-3">
             <label for="duree" class="form-label custom-label"><i class="fas fa-clock icon"></i> Durée</label>
-            <input type="number" class="form-control" id="duree" name="duree" value="{{ old('duree', $electro->duree) }}" required>
+            <input type="number" class="form-control" id="duree" name="duree" value="{{ old('duree', $electro->duree) }}" >
         </div>
 
         <div class="mb-3">
             <label for="consomation" class="form-label custom-label"><i class="fas fa-lightbulb icon"></i> Consommation</label>
-            <input type="number" class="form-control" id="consomation" name="consomation" value="{{ old('consomation', $electro->consomation) }}" required>
+            <input type="number" class="form-control" id="consomation" name="consomation" value="{{ old('consomation', $electro->consomation) }}" >
         </div>
 
         <div class="mb-3">
         <label for="logement_id" class="form-label custom-label"><i class="fas fa-home icon"></i> Logement</label>
-<select class="form-select" id="logement_id" name="logement_id" required>
+<select class="form-select" id="logement_id" name="logement_id" >
     @foreach($logements as $logement)
         <option value="{{ $logement->id }}" {{ $electro->logement_id == $logement->id ? 'selected' : '' }}>
             {{ $logement->address }} <!-- Assurez-vous que 'adress' est correct -->
