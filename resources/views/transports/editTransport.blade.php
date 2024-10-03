@@ -40,6 +40,8 @@
 
 </head>
 <body class="custom-background">
+@include('frontoffice.navbar')
+
     <div class="container mt-5 custom-container">
         <h2 class="custom-title"><i class="fas fa-car"></i> Edit Transport</h2>
 

@@ -43,6 +43,8 @@
     </style>
 </head>
 <body>
+@include('frontoffice.navbar')
+
     <div class="container">
         <div class="feedback-form-container">
             <h2>Edit Feedback</h2>

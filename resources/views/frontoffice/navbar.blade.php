@@ -59,6 +59,9 @@
                     <a href="/conseils" class="dropdown-item">Conseil</a>
                     <a href="/facture" class="dropdown-item">Facture</a>
                     <a href="/source" class="dropdown-item">Source</a>
+                    <a href="/Feedbacks/All" class="dropdown-item">Feedback</a>
+                    <a href="/transports/" class="dropdown-item">Transport</a>
+
 
 
 

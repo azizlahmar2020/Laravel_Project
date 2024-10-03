@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+@include('frontoffice.navbar')
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transport List</title>
@@ -27,7 +29,6 @@
         .custom-background {
             background-color: #e9ecef;
             min-height: 100vh;
-            padding: 30px;
         }
         #transport-table thead {
             background-color: #f1f3f5;
@@ -35,6 +36,7 @@
     </style>
 </head>
 <body class="custom-background">
+
     <div class="container mt-5">
         <!-- Success Alert -->
         @if (session('success'))
