@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('failed_jobs', function (Blueprint $table) {
+        Schema::create('conseils', function (Blueprint $table) {
             $table->id();
-            $table->string('uuid', 191)->unique();
-            $table->text('connection');
-            $table->text('queue');
-            $table->longText('payload');
-            $table->longText('exception');
-            $table->timestamp('failed_at')->useCurrent();
+            $table->string('description'); // description du conseil
+            $table->decimal('economies', 10, 2); // économie potentielle (kWh ou CO2)
+            $table->foreignId('fournisseur_id')->constrained()->onDelete('cascade'); // Foreign key
+            $table->timestamps();
         });
     }
 
@@ -31,6 +29,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('failed_jobs');
+        Schema::dropIfExists('conseils');
+        
     }
 };
