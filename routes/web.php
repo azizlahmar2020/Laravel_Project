@@ -4,7 +4,10 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LogementController;
 use App\Http\Controllers\ElectroController;
-
+use App\Http\Controllers\FournisseurController;
+use App\Http\Controllers\ConseilEController;
+use App\Http\Controllers\SourceController;
+use App\Http\Controllers\FactureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +26,10 @@ Route::put('electros/{id_electro}', [ElectroController::class, 'update'])->name(
 // Dans routes/web.php
 Route::get('/logement', [LogementController::class, 'index'])->name('Logement.indexLogement');
 Route::get('/electros/create', [ElectroController::class, 'create'])->name('electros.create');
-
+Route::resource('source', SourceController::class);
+Route::resource('facture', FactureController::class);
+Route::resource('fournisseurs', FournisseurController::class);
+Route::resource('conseils', ConseilEController::class);
 Route::get('electros', [ElectroController::class, 'index'])->name('electros.indexElectro');
 
 Route::resource('Logement',LogementController::class);
