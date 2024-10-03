@@ -15,16 +15,20 @@ return new class extends Migration
     {
         Schema::create('personal_access_tokens', function (Blueprint $table) {
             $table->id();
-            $table->morphs('tokenable');
+            // Define tokenable_type and tokenable_id manually
+            $table->string('tokenable_type', 191); // Limit length to 191
+            $table->unsignedBigInteger('tokenable_id');
             $table->string('name');
             $table->string('token', 64)->unique();
             $table->text('abilities')->nullable();
             $table->timestamp('last_used_at')->nullable();
             $table->timestamp('expires_at')->nullable();
             $table->timestamps();
+
+            // Create index for tokenable
+            $table->index(['tokenable_type', 'tokenable_id']);
         });
     }
-
     /**
      * Reverse the migrations.
      *
