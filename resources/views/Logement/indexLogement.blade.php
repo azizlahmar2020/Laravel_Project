@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-@include('frontoffice.navbar')
+    @include('frontoffice.navbar')
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,13 +52,45 @@
         <div class="custom-container">
             <h2 class="custom-title"><i class="fas fa-home icon"></i> Logements List</h2>
 
-            <div class="text-end mb-3">
-                <a href="{{ route('Logement.create') }}" class="btn btn-success mb-3" id="add-logement-btn"><i class="fas fa-plus"></i> Add New Logement</a>
+            <!-- Search Bar -->
+            <div class="row mb-3">
+              <!--   <div class="col-md-4">
+                    <form action="{{ route('Logement.index') }}" method="GET" id="search-form">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control" placeholder="Search by Address, Type..." value="{{ request()->query('search') }}">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div> -->
+
+                <div class="col-md-4">
+                <div class="mb-3">
+                <input type="text" id="search-input" class="form-control" placeholder="Rechercher un Logement...">
+            </div>
+      <!--   <form method="GET" action="{{ route('Logement.index') }}">
+            <div class="input-group">
+                <input type="text" class="form-control" name="search" placeholder="Rechercher un logement..." value="{{ request()->get('search') }}">
+                <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+        </form> -->
+
+</div>
+
+
+
+                <div class="col-md-8 text-end">
+                    <a href="{{ route('Logement.create') }}" class="btn btn-success mb-3" id="add-logement-btn"><i class="fas fa-plus"></i> Add New Logement</a>
+                </div>
             </div>
 
             <div class="table-responsive">
                 <table class="table table-hover align-middle" id="logement-table">
-                    <thead class="table-light">
+                @if ($logements->isEmpty())
+                <div class="alert alert-warning">Aucun logement trouvé pour "{{ request()->get('search') }}"</div>
+                @else
+                <thead class="table-light">
                         <tr>
                             <th>Address</th>
                             <th>Type</th>
@@ -68,6 +100,8 @@
                         </tr>
                     </thead>
                     <tbody>
+
+
                         @foreach ($logements as $logement)
                         <tr id="logement-{{ $logement->id }}">
                             <td>{{ $logement->address }}</td>
@@ -84,6 +118,7 @@
                             </td>
                         </tr>
                         @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div>
@@ -102,7 +137,23 @@
     <script src="lib/lightbox/js/lightbox.min.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>    <script>
+    <script src="js/main.js"></script>
+    <script>
+         document.getElementById('search-input').addEventListener('keyup', function() {
+            const searchTerm = this.value.toLowerCase();
+            const tableRows = document.querySelectorAll('#logement-table tbody tr');
+
+            tableRows.forEach(row => {
+                const fournisseurName = row.cells[0].textContent.toLowerCase();
+                const energyType = row.cells[1].textContent.toLowerCase();
+
+                if (fournisseurName.includes(searchTerm) || energyType.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
         document.addEventListener('DOMContentLoaded', () => {
             const successAlert = document.getElementById('success-alert');
             const dangerAlert = document.getElementById('danger-alert');

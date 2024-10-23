@@ -25,6 +25,9 @@ Route::get('/logement', [LogementController::class, 'index'])->name('Logement.in
 Route::get('/electros/create', [ElectroController::class, 'create'])->name('electros.create');
 
 Route::get('electros', [ElectroController::class, 'index'])->name('electros.indexElectro');
+Route::get('/logements/search', [LogementController::class, 'search'])->name('Logement.search');
+Route::get('/electros/statistics', [ElectroController::class, 'statistics'])->name('electros.statistics');
+Route::get('/export-pdf-Electro', 'StatController@exportPDF');
 
 Route::resource('Logement',LogementController::class);
 Route::get('/', function () {

@@ -8,17 +8,35 @@ use App\Models\Logement;
 
 class ElectroController extends Controller
 {
+
+
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+
+    public function index(Request $request)
     {
-        // Retourner tous les électros
-        $electros = Electro::all();
-        return view('electros.indexElectro', compact('electros'));
+        $search = $request->get('search');
+
+        // Requête de base pour obtenir tous les logements
+        $electros = Electro::query();
+
+        // Si un terme de recherche est présent, on filtre les résultats
+        if ($search) {
+            $electros->where('type', 'LIKE', "%{$search}%");
+        }
+
+        // Obtenir les résultats
+        $electros = $electros->get();
+
+        // Retourner la vue avec les résultats
+        return view('electros.indexElectro', compact('electros','search'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -41,24 +59,30 @@ class ElectroController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        // Validation des données
-        $validated = $request->validate([
-            'type' => 'required|string|max:255',
-            'puissance' => 'required|numeric|min:0',
-            'duree' => 'required|numeric|min:0',
-            'consomation' => 'required|numeric|min:0',
-            'logement_id' => 'required|exists:logements,id', // Validate logement_id
-        ]);
+{
+    // Validation des données
+    $validated = $request->validate([
+        'type' => 'required|string|max:255',
+        'puissance' => 'required|numeric|min:0',
+        'duree' => 'required|numeric|min:0',
+        'logement_id' => 'required|exists:logements,id', // Validate logement_id
+    ]);
 
-        // Création d'un nouvel electro après validation
-        $Electro = Electro::create($validated);
+    // Calculer la consommation avant la création
+    $consommation = ($validated['puissance'] / 1000) * $validated['duree'];
 
-        // Redirection après succès
-        session()->flash('success', 'Electro added successfully!');
-        session()->flash('highlight', $Electro->id_electro);
-        return redirect('/Electros');
-    }
+    // Ajouter la consommation aux données validées
+    $validated['consomation'] = $consommation;
+
+    // Création d'un nouvel electro après validation
+    $electro = Electro::create($validated);
+
+    // Redirection après succès
+    session()->flash('success', 'Electro added successfully!');
+    session()->flash('highlight', $electro->id_electro);
+    return redirect('/Electros');
+}
+
 
     /**
      * Display the specified resource.
@@ -96,26 +120,33 @@ class ElectroController extends Controller
      * @param  int  $id_electro
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_electro)
-    {
-        // Validation des données
-        $validated = $request->validate([
-            'type' => 'required|string|max:255',
-            'puissance' => 'required|numeric|min:0',
-            'duree' => 'required|numeric|min:0',
-            'consomation' => 'required|numeric|min:0',
-            'logement_id' => 'required|exists:logements,id', // Validate logement_id
-        ]);
 
-        // Mettre à jour l'electro après validation
-        $electro = Electro::findOrFail($id_electro); // Use the id_electro
-        $electro->update($validated);
+     public function update(Request $request, $id_electro)
+     {
+         // Validation des données
+         $validated = $request->validate([
+             'type' => 'required|string|max:255',
+             'puissance' => 'required|numeric|min:0',
+             'duree' => 'required|numeric|min:0',
+             'logement_id' => 'required|exists:logements,id', // Validate logement_id
+         ]);
 
-        // Redirection après succès
-        session()->flash('success', 'Electro updated successfully!');
-        session()->flash('highlight', $id_electro);
-        return redirect()->route('electros.indexElectro');
-    }
+         // Mettre à jour l'electro après validation
+         $electro = Electro::findOrFail($id_electro); // Utilise l'id_electro
+         $electro->update($validated);
+
+         // Calculer la consommation après la mise à jour des données
+         $consommation = ($validated['puissance'] / 1000) * $validated['duree'];
+         $electro->consomation = $consommation;
+
+         // Sauvegarder l'électro avec la nouvelle consommation
+         $electro->save();
+
+         // Redirection après succès
+         session()->flash('success', 'Electro updated successfully!');
+         session()->flash('highlight', $id_electro);
+         return redirect()->route('electros.indexElectro');
+     }
 
     /**
      * Remove the specified resource from storage.
@@ -133,4 +164,49 @@ session(['highlight' => $id]); // Ajoutez cette ligne
 
        return redirect()->route('electros.indexElectro')->with('danger', 'Electro deleted successfully');
 }
+
+public function statistics()
+{
+    try {
+        // Compter le nombre total d'électros
+        $totalElectros = Electro::count();
+
+        // Somme de la consommation
+        $totalConsommation = Electro::sum('consomation');
+
+        // Moyenne de la puissance
+        $averagePuissance = Electro::avg('puissance');
+
+        // Consommation par adresse
+        $consommationParAdresse = Electro::with('logement') // Assurez-vous que la relation est définie
+            ->selectRaw('logement_id, SUM(consomation) as total_consumption')
+            ->groupBy('logement_id')
+            ->get();
+
+        // Retourner la vue avec toutes les variables nécessaires
+        return view('electros.statistics', compact('totalElectros', 'totalConsommation', 'averagePuissance', 'consommationParAdresse'));
+    } catch (\Exception $e) {
+        // Log l'erreur
+        \Log::error('Erreur lors de la récupération des statistiques: ' . $e->getMessage());
+
+        // Retourner une réponse d'erreur personnalisée
+        return response()->view('errors.500', [], 500);
+    }
+}
+
+public function exportPDF()
+{
+    $totalElectros = 100; // Exemple de données
+    $totalConsommation = 2000; // Exemple de données
+    $averagePuissance = 150; // Exemple de données
+    $consommationParAdresse = [
+        (object)['logement_id' => 1, 'total_consumption' => 500],
+        (object)['logement_id' => 2, 'total_consumption' => 600]
+    ]; // Exemple de données
+
+    $pdf = PDF::loadView('electros.statistics', compact('totalElectros', 'totalConsommation', 'averagePuissance', 'consommationParAdresse'));
+    return $pdf->download('statistiques.pdf');
+}
+
+
 }

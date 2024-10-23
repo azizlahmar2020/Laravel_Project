@@ -82,10 +82,10 @@
             <input type="number" class="form-control" id="duree" name="duree" value="{{ old('duree', $electro->duree) }}" required>
         </div>
 
-        <div class="mb-3">
+       <!--  <div class="mb-3">
             <label for="consomation" class="form-label custom-label"><i class="fas fa-lightbulb icon"></i> Consommation</label>
             <input type="number" class="form-control" id="consomation" name="consomation" value="{{ old('consomation', $electro->consomation) }}" required>
-        </div>
+        </div> -->
 
         <div class="mb-3">
         <label for="logement_id" class="form-label custom-label"><i class="fas fa-home icon"></i> Logement</label>

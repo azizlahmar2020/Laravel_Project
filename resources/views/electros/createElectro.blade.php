@@ -82,10 +82,10 @@
             </div>
 
             <!-- Consommation Field -->
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                 <label for="consomation" class="form-label custom-label"><i class="fas fa-battery-half icon"></i> Consommation (kWh)</label>
                 <input type="number" class="form-control" id="consomation" name="consomation"  placeholder="Enter the consumption in kWh" >
-            </div>
+            </div> -->
 
             <div class="mb-3">
     <label for="logement_id" class="form-label custom-label"><i class="fas fa-home icon"></i> Logement</label>
