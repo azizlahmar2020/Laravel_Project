@@ -186,7 +186,10 @@
             }
         });
     </script>
-    {{ $logements->links() }} <!-- Afficher les liens de pagination -->
+<div class="mt-3 d-flex justify-content-center">
+    {{ $logements->links() }} <!-- This will render the pagination links -->
+</div>
+
 
 </body>
 @include('frontoffice.footer')

@@ -29,7 +29,7 @@ class LogementController extends Controller
          }
 
          // Obtenir les résultats
-         $logements = $logements->get();
+         $logements = $logements->paginate(7);
 
          // Retourner la vue avec les résultats
          return view('Logement.indexLogement', compact('logements', 'search'));
