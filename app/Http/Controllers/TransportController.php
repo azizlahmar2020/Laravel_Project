@@ -15,7 +15,7 @@ class TransportController extends Controller
     public function index()
     {
         // Retrieve all transport records from the database
-        $transports = Transport::paginate(10);
+        $transports = Transport::all();
         return view('transports.index', compact('transports'));
     }
 

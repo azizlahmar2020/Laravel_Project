@@ -15,7 +15,7 @@ class SourceController extends Controller
      */
     public function index()
     {
-        $sources = Source::paginate(10);
+        $sources = Source::all(); 
         return view('Source.indexSource', compact('sources'));
         }
 

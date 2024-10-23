@@ -15,7 +15,7 @@ class FactureController extends Controller
      */
     public function index()
     {
-        $factures = Facture::paginate(10);
+        $factures = Facture::all(); 
         return view('Facture.indexFacture', compact('factures'));
         }
 
