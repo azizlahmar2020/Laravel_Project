@@ -34,7 +34,7 @@ class LogementController extends Controller
          $logements->orderBy($sortBy, $sortOrder);
 
          // Obtenir les résultats
-         $logements = $logements->get();
+         $logements = $logements->paginate(7);
 
          // Retourner la vue avec les résultats
          return view('Logement.indexLogement', compact('logements', 'search', 'sortBy', 'sortOrder'));

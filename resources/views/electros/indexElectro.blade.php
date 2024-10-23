@@ -183,9 +183,7 @@
             });
         });
     </script>
-<div class="mt-3">
-    {{ $logements->links() }} <!-- This will render the pagination links -->
-</div>
+
 
     @include('frontoffice.footer') <!-- Footer inclus dans le body -->
 </body>
