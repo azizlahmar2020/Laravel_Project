@@ -56,24 +56,26 @@
                     <a href="/Logement" class="dropdown-item">Logement</a>
                     <a href="/Electros" class="dropdown-item">Electroménager</a>
                     <a href="{{ route('energyconso.index') }}" class="dropdown-item">Consumption</a>
-
                     <a href="/fournisseurs" class="dropdown-item">Fournisseur</a>
                     <a href="/conseils" class="dropdown-item">Conseil</a>
                     <a href="/facture" class="dropdown-item">Facture</a>
                     <a href="/source" class="dropdown-item">Source</a>
                     <a href="/Feedbacks/All" class="dropdown-item">Feedback</a>
                     <a href="/transports/" class="dropdown-item">Transport</a>
-
-
-
-
                 </div>
             </div>
             <a href="" class="nav-item nav-link">About</a>
             <a href="" class="nav-item nav-link">Service</a>
             <a href="" class="nav-item nav-link">Project</a>
-
             <a href="contact.html" class="nav-item nav-link">Contact</a>
+
+            <!-- Bouton de déconnexion -->
+            <form method="POST" action="{{ route('logout') }}" class="nav-item">
+                @csrf
+                <button type="submit" class="nav-link btn btn-link" style="color: #000000; text-decoration: none;">
+                    Logout
+                </button>
+            </form>
         </div>
         <!-- Bouton avec fond vert, texte "Get A Quote" en noir, et icône blanche -->
         <a href="" class="btn btn-custom-green rounded-0 py-4 px-lg-5 d-none d-lg-block">
