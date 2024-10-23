@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CarbonFootprintController;
+use App\Http\Controllers\EnergyConsumptionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +25,7 @@ use App\Http\Controllers\TransportController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/fournisseurs/{id}/conseils', [ConseilEController::class, 'showConseils'])->name('conseils.fournisseur');
 
 Route::resource('Electros', ElectroController::class);
 // Route pour afficher le formulaire d'édition
@@ -34,28 +37,21 @@ Route::get('/electros/create', [ElectroController::class, 'create'])->name('elec
 Route::resource('feedback', FeedbackController::class);
 Route::get('/Feedbacks/All', [FeedbackController::class, 'index'])->name('feedbacks.all');
 Route::get('feedback/{feedback}/edit', [FeedbackController::class, 'edit'])->name('feedback.edit');
-Route::get('/feedstat', [FeedbackController::class, 'statistiques'])->name('feedback.statistiques');
-
 Route::resource('transports', TransportController::class);
 Route::get('/transport/create', [TransportController::class, 'create'])->name('transports.createTransport');
 Route::get('transports/{id}/edit', [TransportController::class, 'edit'])->name('transports.editTransport');
 Route::put('transports/{id}', [TransportController::class, 'update'])->name('transports.update');
-Route::get('transports/{id}', [TransportController::class, 'show'])->name('transports.show');
-
-Route::get('/statistics', [TransportController::class, 'statistics'])->name('transports.statistics');
 
 Route::resource('source', SourceController::class);
-// Route to add a renewable source to the facture
-Route::post('/facture/{id}/add-source', [FactureController::class, 'addSource'])->name('facture.addSource');
 Route::resource('facture', FactureController::class);
-Route::post('/facture/{id}/calculate-source', [FactureController::class, 'calculateSource']);
-Route::get('/factures/{id}', [FactureController::class, 'show'])->name('facture.showFacture');
-Route::get('facture/exportPdf/{id}', [FactureController::class, 'exportPdf'])->name('facture.exportPdf');
 Route::resource('fournisseurs', FournisseurController::class);
 Route::resource('conseils', ConseilEController::class);
 Route::get('electros', [ElectroController::class, 'index'])->name('electros.indexElectro');
+Route::get('/logements/search', [LogementController::class, 'search'])->name('Logement.search');
+Route::get('/electros/statistics', [ElectroController::class, 'statistics'])->name('electros.statistics');
+Route::get('/export-pdf-Electro', 'StatController@exportPDF');
 
-Route::resource('Logement',LogementController::class);
+Route::resource('Logement', LogementController::class);
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -68,6 +64,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('/energyconso', EnergyConsumptionController::class);
+    Route::resource('/carbonfootprint', CarbonFootprintController::class);
     route::get('/home', [App\Http\Controllers\frontofficeController::class, 'index'])->name('home');
 });
 
