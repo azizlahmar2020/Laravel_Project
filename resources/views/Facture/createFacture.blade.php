@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Energy Bill</title>
+    <title>Ajouter une facture</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for Icons -->
@@ -43,7 +43,7 @@
     <!-- Navbar End -->
 <body class="custom-background">
     <div class="container mt-5 custom-container">
-        <h2 class="custom-title"><i class="fas fa-file-invoice"></i>Add Energy Bill</h2>
+        <h2 class="custom-title"><i class="fas fa-file-invoice"></i> Ajouter une facture</h2>
 
        
 
@@ -53,18 +53,23 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <!-- Consommateur Field -->
-                    <div class="mb-3">
-                        <label for="consommateur" class="form-label custom-label"><i class="fas fa-user icon"></i> Consumer</label>
-                        <input type="text" class="form-control" id="consommateur" name="consommateur">
-                        @error('consommateur')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
+                  <!-- Consommateur Field -->
+<div class="mb-3">
+    <label for="consommateur" class="form-label custom-label">
+        <i class="fas fa-user icon"></i> Consommateur
+    </label>
+    <select class="form-control" id="consommateur" name="consommateur" >
+        <option value="">Choisir le consommateur</option>
+        @foreach($users as $user)
+            <option value="{{ $user->id }}">{{ $user->name }}</option>
+        @endforeach
+    </select>
+</div>
+
 
                     <!-- Date Facture Field -->
                     <div class="mb-3">
-                        <label for="date_facture" class="form-label custom-label"><i class="fas fa-calendar-alt icon"></i> Bill date</label>
+                        <label for="date_facture" class="form-label custom-label"><i class="fas fa-calendar-alt icon"></i> Date de la facture</label>
                         <input type="date" class="form-control" id="date_facture" name="date_facture">
                         @error('date_facture')
                             <div class="text-danger">{{ $message }}</div>
@@ -73,7 +78,7 @@
 
                     <!-- Période Facture Field -->
                     <div class="mb-3">
-                        <label for="periode_facture" class="form-label custom-label"><i class="fas fa-clock icon"></i> Billing Period</label>
+                        <label for="periode_facture" class="form-label custom-label"><i class="fas fa-clock icon"></i> Période de la facture</label>
                         <input type="number" class="form-control" id="periode_facture" name="periode_facture">
                         @error('periode_facture')
                             <div class="text-danger">{{ $message }}</div>
@@ -82,7 +87,7 @@
 
                     <!-- Consommation Totale Field -->
                     <div class="mb-3">
-                        <label for="consommation_totale" class="form-label custom-label"><i class="fas fa-tachometer-alt icon"></i>Total Consumption (kWh)</label>
+                        <label for="consommation_totale" class="form-label custom-label"><i class="fas fa-tachometer-alt icon"></i>Consommation totale (kWh)</label>
                         <input type="number" class="form-control" id="consommation_totale" name="consommation_totale">
                         @error('consommation_totale')
                             <div class="text-danger">{{ $message }}</div>
@@ -91,7 +96,7 @@
 
                     <!-- Prix Unitaire Field -->
                     <div class="mb-3">
-                        <label for="prix_unitaire" class="form-label custom-label"><i class="fas fa-euro-sign icon"></i>Unit Price (dt/ kWh)</label>
+                        <label for="prix_unitaire" class="form-label custom-label"><i class="fas fa-euro-sign icon"></i>Prix Unitaire (dt/ kWh)</label>
                         <input type="number" step="0.01" class="form-control" id="prix_unitaire" name="prix_unitaire">
                         @error('prix_unitaire')
                             <div class="text-danger">{{ $message }}</div>
@@ -102,7 +107,7 @@
                 <div class="col-md-6">
                     <!-- Montant Total Field -->
                     <div class="mb-3">
-                        <label for="montant_totale" class="form-label custom-label"><i class="fas fa-money-bill-wave icon"></i>Total Price</label>
+                        <label for="montant_totale" class="form-label custom-label"><i class="fas fa-money-bill-wave icon"></i>Prix total</label>
                         <input type="number" class="form-control" id="montant_totale" name="montant_totale">
                         @error('montant_totale')
                             <div class="text-danger">{{ $message }}</div>
@@ -111,7 +116,7 @@
 
                     <!-- Type d'Énergie Field -->
                     <div class="mb-3">
-                        <label for="type_energie" class="form-label custom-label"><i class="fas fa-plug icon"></i>Energy Type</label>
+                        <label for="type_energie" class="form-label custom-label"><i class="fas fa-plug icon"></i>Type d'énergie</label>
                         <select class="form-control" id="type_energie" name="type_energie">
                             <option value="electricity">Electricity</option>
                             <option value="gas">Gas</option>
@@ -126,7 +131,7 @@
 
                     <!-- Emission Carbone Field -->
                     <div class="mb-3">
-                        <label for="emission_carbone" class="form-label custom-label"><i class="fas fa-leaf icon"></i>Carbon Emission (tonnes)</label>
+                        <label for="emission_carbone" class="form-label custom-label"><i class="fas fa-leaf icon"></i> Emission de CO2 (tonnes)</label>
                         <input type="number" step="0.01" class="form-control" id="emission_carbone" name="emission_carbone">
                         @error('emission_carbone')
                             <div class="text-danger">{{ $message }}</div>
@@ -135,7 +140,7 @@
 
                     <!-- Moyen de Paiement Field -->
                     <div class="mb-3">
-                        <label for="moyen_paiement" class="form-label custom-label"><i class="fas fa-credit-card icon"></i>Payment Method</label>
+                        <label for="moyen_paiement" class="form-label custom-label"><i class="fas fa-credit-card icon"></i> Méthode de paiement</label>
                         <select class="form-control" id="moyen_paiement" name="moyen_paiement">
                             <option value="Credit Card">Credit Card</option>
                             <option value="Bank Transfer">Bank Transfer</option>
@@ -161,7 +166,7 @@
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="btn btn-submit w-100"><i class="fas fa-paper-plane"></i> Submit</button>
+            <button type="submit" class="btn btn-submit w-100"><i class="fas fa-paper-plane"></i> Ajouter</button>
         </form>
     </div>
 

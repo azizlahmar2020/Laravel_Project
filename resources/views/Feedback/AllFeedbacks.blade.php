@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Feedbacks</title>
+    <title>Liste des Feedbacks</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         .custom-background {
-            background-color: #f9f9f9; /* Light gray background */
+            background-color: #f0f8f0; /* Light gray background */
         }
         .feedback-container {
             background: #ffffff; /* White container */
@@ -61,8 +63,14 @@
 
 
     <div class="container mt-5">
-        <h2 class="text-center mb-4">All Feedbacks</h2>
+    <a href="{{ route('feedback.statistiques') }}" class="btn btn-info">Voir les Statistiques</a>
 
+        <h2 class="text-center mb-4">Liste des Feedbacks</h2>
+
+ <!-- Formulaire de recherche par email -->
+ <div class="mb-4">
+        <input type="text" id="searchEmail" class="form-control" placeholder="Rechercher par email" onkeyup="filterFeedbacks()">
+    </div>
         @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -70,40 +78,41 @@
         @endif
 
         @foreach($feedbacks as $feedback)
-    <div class="feedback-container">
-        <div class="feedback-title">
-            <i class="fas fa-user"></i> {{ $feedback->email }}
-        </div>
-        <div class="feedback-info">
-            <span class="rating">
-                @for ($i = 0; $i < $feedback->rating; $i++)
-                    <i class="fas fa-star" style="color: gold;"></i>
-                @endfor
-                @for ($i = $feedback->rating; $i < 5; $i++)
-                    <i class="fas fa-star" style="color: lightgray;"></i>
-                @endfor
-            </span>
-            <span class="date"> | {{ \Carbon\Carbon::parse($feedback->date)->format('d M Y') }}</span>
-        </div>
-        <div class="feedback-comment">
-            {{ $feedback->comment }}
-        </div>
-
-        <!-- Edit and Delete buttons -->
-        <div class="mt-3">
-            <a href="{{ route('feedback.edit', $feedback->id) }}" class="btn btn-primary btn-sm">
-                <i class="fas fa-edit"></i> Edit
-            </a>
-            <form action="{{ route('feedback.destroy', $feedback->id) }}" method="POST" class="d-inline-block">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this feedback?')">
-                    <i class="fas fa-trash-alt"></i> Delete
-                </button>
-            </form>
-        </div>
+<div class="feedback-container" data-email="{{ strtolower($feedback->email) }}">
+    <div class="feedback-title">
+        <i class="fas fa-user"></i> {{ $feedback->email }}
     </div>
+    <div class="feedback-info">
+        <span class="rating">
+            @for ($i = 0; $i < $feedback->rating; $i++)
+                <i class="fas fa-star" style="color: gold;"></i>
+            @endfor
+            @for ($i = $feedback->rating; $i < 5; $i++)
+                <i class="fas fa-star" style="color: lightgray;"></i>
+            @endfor
+        </span>
+        <span class="date"> | {{ \Carbon\Carbon::parse($feedback->date)->format('d M Y') }}</span>
+    </div>
+    <div class="feedback-comment">
+        {{ $feedback->comment }}
+    </div>
+
+    <!-- Edit and Delete buttons -->
+    <div class="mt-3">
+        <a href="{{ route('feedback.edit', $feedback->id) }}" class="btn btn-primary btn-sm">
+            <i class="fas fa-edit"></i> Editer
+        </a>
+        <form action="{{ route('feedback.destroy', $feedback->id) }}" method="POST" class="d-inline-block">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this feedback?')">
+                <i class="fas fa-trash-alt"></i> Supprimer
+            </button>
+        </form>
+    </div>
+</div>
 @endforeach
+
         
         <!-- Leave a Feedback Button -->
         <div class="text-center">
@@ -117,3 +126,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+<script>
+  function filterFeedbacks() {
+    const searchValue = document.getElementById('searchEmail').value.toLowerCase();
+    const feedbackContainers = document.querySelectorAll('.feedback-container');
+
+    feedbackContainers.forEach(container => {
+        const email = container.getAttribute('data-email');
+
+        if (email) {
+            if (email.includes(searchValue)) {
+                container.style.display = '';
+            } else {
+                container.style.display = 'none';
+            }
+        }
+    });
+}
+
+</script>
+@include('frontoffice.footer')

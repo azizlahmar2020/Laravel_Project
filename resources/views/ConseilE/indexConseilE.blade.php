@@ -222,3 +222,4 @@
 @include('frontoffice.footer')
 
 </html>
+@include('frontoffice.footer')
