@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CarbonFootprintController;
+use App\Http\Controllers\EnergyConsumptionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,7 +47,7 @@ Route::resource('fournisseurs', FournisseurController::class);
 Route::resource('conseils', ConseilEController::class);
 Route::get('electros', [ElectroController::class, 'index'])->name('electros.indexElectro');
 
-Route::resource('Logement',LogementController::class);
+Route::resource('Logement', LogementController::class);
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -58,6 +60,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('/energyconso', EnergyConsumptionController::class);
+    Route::resource('/carbonfootprint', CarbonFootprintController::class);
     route::get('/home', [App\Http\Controllers\frontofficeController::class, 'index'])->name('home');
 });
 

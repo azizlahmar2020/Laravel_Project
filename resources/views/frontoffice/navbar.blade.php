@@ -55,7 +55,9 @@
                 <div class="dropdown-menu bg-light m-0">
                     <a href="/Logement" class="dropdown-item">Logement</a>
                     <a href="/Electros" class="dropdown-item">Electroménager</a>
-                    <a href="/fournisseurs"  class="dropdown-item">Fournisseur</a>
+                    <a href="{{ route('energyconso.index') }}" class="dropdown-item">Consumption</a>
+
+                    <a href="/fournisseurs" class="dropdown-item">Fournisseur</a>
                     <a href="/conseils" class="dropdown-item">Conseil</a>
                     <a href="/facture" class="dropdown-item">Facture</a>
                     <a href="/source" class="dropdown-item">Source</a>
