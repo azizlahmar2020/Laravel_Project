@@ -12,11 +12,30 @@ class LogementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $logements = Logement::paginate(10);// Retrieve all Logement records
-        return view('Logement.indexLogement', compact('logements'));
-    }
+
+     public function index(Request $request)
+     {
+         $search = $request->get('search');
+
+         // Requête de base pour obtenir tous les logements
+         $logements = Logement::query();
+
+         // Si un terme de recherche est présent, on filtre les résultats
+         if ($search) {
+             $logements->where('address', 'LIKE', "%{$search}%")
+                       ->orWhere('type', 'LIKE', "%{$search}%")
+                       ->orWhere('superficie', 'LIKE', "%{$search}%")
+                       ->orWhere('nbr_habitant', 'LIKE', "%{$search}%");
+         }
+
+         // Obtenir les résultats
+         $logements = $logements->get();
+
+         // Retourner la vue avec les résultats
+         return view('Logement.indexLogement', compact('logements', 'search'));
+     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -115,4 +134,21 @@ session()->flash('highlight', $id);
 
        return redirect()->route('Logement.index')->with('danger', 'Logement deleted successfully');
     }
+
+
+    public function search(Request $request)
+{
+    $query = $request->input('search');
+
+    // Rechercher des logements en fonction de l'adresse ou du type
+    $logements = Logement::where('address', 'LIKE', "%{$query}%")
+                        ->orWhere('type', 'LIKE', "%{$query}%")
+                        ->orWhere('nbr_habitant', 'LIKE', "%{$query}%")
+                        ->get();
+
+    if ($request->ajax()) {
+        return response()->json(view('Logement.partials._logements', compact('logements'))->render());
+    }
+}
+
 }

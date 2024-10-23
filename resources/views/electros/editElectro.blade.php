@@ -12,12 +12,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-   <!-- Libraries Stylesheet -->
-<link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
-<link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-<link href="{{ asset('lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
-<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
         .custom-background {
             background-color: #f0f8f0; /* Light green background */
@@ -68,28 +68,28 @@
 
         <div class="mb-3">
             <label for="type" class="form-label custom-label"><i class="fas fa-plug icon"></i> Type</label>
-            <input type="text" class="form-control" id="type" name="type" value="{{ old('type', $electro->type) }}" >
+            <input type="text" class="form-control" id="type" name="type" value="{{ old('type', $electro->type) }}" required>
         </div>
 
 
         <div class="mb-3">
             <label for="puissance" class="form-label custom-label"><i class="fas fa-bolt icon"></i> Puissance</label>
-            <input type="number" class="form-control" id="puissance" name="puissance" value="{{ old('puissance', $electro->puissance) }}" >
+            <input type="number" class="form-control" id="puissance" name="puissance" value="{{ old('puissance', $electro->puissance) }}" required>
         </div>
 
         <div class="mb-3">
             <label for="duree" class="form-label custom-label"><i class="fas fa-clock icon"></i> Durée</label>
-            <input type="number" class="form-control" id="duree" name="duree" value="{{ old('duree', $electro->duree) }}" >
+            <input type="number" class="form-control" id="duree" name="duree" value="{{ old('duree', $electro->duree) }}" required>
         </div>
 
-        <div class="mb-3">
+       <!--  <div class="mb-3">
             <label for="consomation" class="form-label custom-label"><i class="fas fa-lightbulb icon"></i> Consommation</label>
-            <input type="number" class="form-control" id="consomation" name="consomation" value="{{ old('consomation', $electro->consomation) }}" >
-        </div>
+            <input type="number" class="form-control" id="consomation" name="consomation" value="{{ old('consomation', $electro->consomation) }}" required>
+        </div> -->
 
         <div class="mb-3">
         <label for="logement_id" class="form-label custom-label"><i class="fas fa-home icon"></i> Logement</label>
-<select class="form-select" id="logement_id" name="logement_id" >
+<select class="form-select" id="logement_id" name="logement_id" required>
     @foreach($logements as $logement)
         <option value="{{ $logement->id }}" {{ $electro->logement_id == $logement->id ? 'selected' : '' }}>
             {{ $logement->address }} <!-- Assurez-vous que 'adress' est correct -->
@@ -113,8 +113,6 @@
 
 
     <!-- Template Javascript -->
-    <script src="{{ asset('js/main.js') }}"></script>
-    </body>
-@include('frontoffice.footer')
-
+    <script src="js/main.js"></script>
+</body>
 </html>

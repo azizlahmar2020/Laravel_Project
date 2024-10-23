@@ -47,6 +47,9 @@ Route::resource('facture', FactureController::class);
 Route::resource('fournisseurs', FournisseurController::class);
 Route::resource('conseils', ConseilEController::class);
 Route::get('electros', [ElectroController::class, 'index'])->name('electros.indexElectro');
+Route::get('/logements/search', [LogementController::class, 'search'])->name('Logement.search');
+Route::get('/electros/statistics', [ElectroController::class, 'statistics'])->name('electros.statistics');
+Route::get('/export-pdf-Electro', 'StatController@exportPDF');
 
 Route::resource('Logement', LogementController::class);
 Route::get('/', function () {
