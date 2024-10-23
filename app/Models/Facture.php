@@ -25,9 +25,25 @@ class Facture extends Model
         'moyen_paiement',
         'statut'
     ];
-
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'consommateur'); // 'consommateur' est la clé étrangère dans la table factures
+    }
     public function sources()
     {
         return $this->hasMany(Source::class);
     }
+    public function updateWithSource(Source $source)
+    {
+        // Mettre à jour l'émission de carbone en soustrayant l'impact de la source
+        $this->emission_carbone -= $source->impactCO2_renouv;
+
+        // Ajouter le coût d'installation de la source au montant total de la facture
+        $this->montant_totale += $source->coutInstall_renouv;
+
+        // Enregistrer les changements
+        $this->save();
+    }
+
+    
 }

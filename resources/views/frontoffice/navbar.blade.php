@@ -49,23 +49,28 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <!-- Liens de navigation en noir, deviennent verts lorsqu'ils sont actifs ou survolés -->
-            <a href="/" class="nav-item nav-link active">Home</a>
-            <a href="" class="nav-item nav-link">About</a>
-            <a href="" class="nav-item nav-link">Service</a>
-            <a href="" class="nav-item nav-link">Project</a>
+            <a href="/dashboard" class="nav-item nav-link active">Home</a>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                 <div class="dropdown-menu bg-light m-0">
                     <a href="/Logement" class="dropdown-item">Logement</a>
                     <a href="/Electros" class="dropdown-item">Electroménager</a>
-                    <a href="" class="dropdown-item">Our Team</a>
-                    <a href="" class="dropdown-item">Testimonial</a>
-                    <a href="" class="dropdown-item">404 Page</a>
-                    <a href="http://127.0.0.1:8000/fournisseurs" class="dropdown-item">Fournisseurs</a>
-                    <a href="http://127.0.0.1:8000/conseils" class="dropdown-item">Conseils</a>
+                    <a href="/fournisseurs"  class="dropdown-item">Fournisseur</a>
+                    <a href="/conseils" class="dropdown-item">Conseil</a>
+                    <a href="/facture" class="dropdown-item">Facture</a>
+                    <a href="/source" class="dropdown-item">Source</a>
+                    <a href="/Feedbacks/All" class="dropdown-item">Feedback</a>
+                    <a href="/transports/" class="dropdown-item">Transport</a>
+
+
+
 
                 </div>
             </div>
+            <a href="" class="nav-item nav-link">About</a>
+            <a href="" class="nav-item nav-link">Service</a>
+            <a href="" class="nav-item nav-link">Project</a>
+
             <a href="contact.html" class="nav-item nav-link">Contact</a>
         </div>
         <!-- Bouton avec fond vert, texte "Get A Quote" en noir, et icône blanche -->

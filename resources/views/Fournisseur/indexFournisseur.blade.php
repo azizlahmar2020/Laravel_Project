@@ -136,3 +136,4 @@
     </script>
 </body>
 </html>
+@include('frontoffice.footer')

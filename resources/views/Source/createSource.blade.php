@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Source d'Énergie Renouvelable</title>
+    <title>Créer une source d'Énergie Renouvelable</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for Icons -->
@@ -43,7 +43,7 @@
     <!-- Navbar End -->
 <body class="custom-background">
     <div class="container mt-5 custom-container">
-        <h2 class="custom-title"><i class="fas fa-solar-panel"></i> Add Renewable Energy Source</h2>
+        <h2 class="custom-title"><i class="fas fa-solar-panel"></i> Ajouter une source </h2>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -63,7 +63,7 @@
                 <div class="col-md-6">
                     <!-- Name Field -->
                     <div class="mb-3">
-                        <label for="nom_renouv" class="form-label custom-label"><i class="fas fa-bolt icon"></i> Source Name</label>
+                        <label for="nom_renouv" class="form-label custom-label"><i class="fas fa-bolt icon"></i> Nom de la source</label>
                         <input type="text" class="form-control" id="nom_renouv" name="nom_renouv" >
                     </div>
 
@@ -75,23 +75,19 @@
 
                     <!-- Puissance Max Field -->
                     <div class="mb-3">
-                        <label for="puissMax_renouv" class="form-label custom-label"><i class="fas fa-wind icon"></i> Power Max (kW)</label>
+                        <label for="puissMax_renouv" class="form-label custom-label"><i class="fas fa-wind icon"></i>Puissance Max (kW)</label>
                         <input type="number" class="form-control" id="puissMax_renouv" name="puissMax_renouv" >
                     </div>
 
                     <!-- Date Field -->
                     <div class="mb-3">
-                        <label for="date_renouv" class="form-label custom-label"><i class="fas fa-calendar-alt icon"></i> Commissioning Date</label>
+                        <label for="date_renouv" class="form-label custom-label"><i class="fas fa-calendar-alt icon"></i>Date de commission</label>
                         <input type="date" class="form-control" id="date_renouv" name="date_renouv" >
                     </div>
 
-                   
-                </div>
-
-                <div class="col-md-6">
                      <!-- Type Field -->
                      <div class="mb-3">
-                        <label for="typeE_renouv" class="form-label custom-label"><i class="fas fa-plug icon"></i> Type of Energy</label>
+                        <label for="typeE_renouv" class="form-label custom-label"><i class="fas fa-plug icon"></i> Type d'énergie </label>
                         <select class="form-control" id="typeE_renouv" name="typeE_renouv" >
                             <option value="solaire">Solar</option>
                             <option value="éolienne">Wind Turbine</option>
@@ -99,35 +95,43 @@
                             <option value="biomasse">Biomass</option>
                         </select>
                     </div>
+                </div>
+
+                <div class="col-md-6">
+                   
                     <!-- Production Estimée Field -->
                     <div class="mb-3">
-                        <label for="prodEstime_renouv" class="form-label custom-label"><i class="fas fa-chart-line icon"></i> Estimated Production (kWh)</label>
+                        <label for="prodEstime_renouv" class="form-label custom-label"><i class="fas fa-chart-line icon"></i> Production éstimée (kWh)</label>
                         <input type="number" class="form-control" id="prodEstime_renouv" name="prodEstime_renouv" >
                     </div>
 
                     <!-- Coût Installation Field -->
                     <div class="mb-3">
-                        <label for="coutInstall_renouv" class="form-label custom-label"><i class="fas fa-euro-sign icon"></i> Installation Cost</label>
+                        <label for="coutInstall_renouv" class="form-label custom-label"><i class="fas fa-euro-sign icon"></i> Coût d'installation </label>
                         <input type="number" step="0.01" class="form-control" id="coutInstall_renouv" name="coutInstall_renouv" >
                     </div>
 
                     <!-- Impact CO2 Field -->
                     <div class="mb-3">
-                        <label for="impactCO2_renouv" class="form-label custom-label"><i class="fas fa-leaf icon"></i> CO2 Impact (tonnes)</label>
+                        <label for="impactCO2_renouv" class="form-label custom-label"><i class="fas fa-leaf icon"></i> Emission de CO2 (tonnes)</label>
                         <input type="number" class="form-control" id="impactCO2_renouv" name="impactCO2_renouv" >
                     </div>
 
                  
-                    <!-- Propriétaire Field -->
-                    <div class="mb-3">
-                        <label for="proprio_renouv" class="form-label custom-label"><i class="fas fa-user icon"></i> Owner</label>
-                        <input type="text" class="form-control" id="proprio_renouv" name="proprio_renouv" >
-                    </div>
-                </div>
-            </div>
+                    <!-- Propriétaire Field (Owner) -->
+              <!-- Propriétaire Field (Updated to show dropdown list) -->
+<div class="mb-3">
+    <label for="proprio_renouv" class="form-label custom-label"><i class="fas fa-user icon"></i>Consommateur</label>
+    <select class="form-control" id="proprio_renouv" name="proprio_renouv">
+        <option value="">Select Owner</option>
+        @foreach($users as $user)
+            <option value="{{ $user->id }}">{{ $user->name }}</option>
+        @endforeach
+    </select>
+</div>
 
             <!-- Submit Button -->
-            <button type="submit" class="btn btn-submit w-100"><i class="fas fa-paper-plane"></i> Submit</button>
+            <button type="submit" class="btn btn-submit w-100"><i class="fas fa-paper-plane"></i> Ajouter</button>
         </form>
     </div>
 
