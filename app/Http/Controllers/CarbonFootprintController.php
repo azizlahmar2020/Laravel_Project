@@ -18,6 +18,9 @@ class CarbonFootprintController extends Controller
     public function index()
     {
         //
+        $carbonemisions = carbon_footprint::paginate(10);
+
+        return view('frontoffice.CarbonFootprint.index', compact('carbonemisions'));
     }
 
     /**
@@ -59,7 +62,9 @@ class CarbonFootprintController extends Controller
         $carbon_footprint->save();
 
         // Afficher le bilan carbone dans la console
-        dd($carbon_footprint);
+
+        return redirect(route('carbonfootprint.show', $carbon_footprint->id))
+            ->with('success', 'Données de carbone ajoutées avec succès.');
 
         // Rediriger avec un message de succès (non atteint avec dd())
         // return redirect('/energyconso')->with('success', 'Le bilan carbone a été enregistré avec succès.');
@@ -73,10 +78,12 @@ class CarbonFootprintController extends Controller
      * @param  \App\Models\carbon_footprint  $carbon_footprint
      * @return \Illuminate\Http\Response
      */
-    public function show(carbon_footprint $carbon_footprint)
+    public function show($id)
     {
-        //
+        $carbon_footprint = carbon_footprint::findOrFail($id);
+        return view('frontoffice.CarbonFootprint.show', compact('carbon_footprint'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
