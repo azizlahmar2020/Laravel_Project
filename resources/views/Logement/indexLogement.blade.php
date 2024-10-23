@@ -186,6 +186,8 @@
             }
         });
     </script>
+    {{ $logements->links() }} <!-- Afficher les liens de pagination -->
+
 </body>
 @include('frontoffice.footer')
 </html>

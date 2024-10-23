@@ -12,8 +12,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
+     <!-- Libraries Stylesheet -->
+<link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
+<link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+<link href="{{ asset('lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <style>
         .custom-background {
             background-color: #f0f8f0; /* Light green background */
@@ -108,4 +112,6 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+@include('frontoffice.footer')
+
 </html>
