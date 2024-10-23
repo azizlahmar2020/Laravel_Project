@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Source; // Ensure the Source model is imported
+use App\Models\Source; 
+use App\Models\User; 
 
 class SourceController extends Controller
 {
@@ -15,8 +16,8 @@ class SourceController extends Controller
      */
     public function index()
     {
-        $sources = Source::all(); 
-        return view('Source.indexSource', compact('sources'));
+        $sources = Source::with('owner')->get(); // Eager load the owner relationship
+    return view('Source.indexSource', compact('sources'));
         }
 
     /**
@@ -26,7 +27,8 @@ class SourceController extends Controller
      */
     public function create()
     {
-        return view ('Source.createSource');
+        $users = User::all(); 
+        return view('Source.createSource', compact('users')); // Passer les utilisateurs à la vue
     }
 
     /**
@@ -46,14 +48,14 @@ class SourceController extends Controller
             'prodEstime_renouv' => 'required|numeric|min:0', // Require a non-negative number
             'coutInstall_renouv' => 'required|numeric|min:0', // Require a non-negative number
             'impactCO2_renouv' => 'required|numeric|min:0', // Require a non-negative number
-            'proprio_renouv' => 'required|string|max:255',   // Ensure propietario is a string
+            'proprio_renouv' => 'required|exists:users,id', // Ensure the owner is a valid user ID
         ]);
     
         // Create a new Source instance with validated data
         $source = Source::create($validate_data);
     
         // Redirect to the sources index page with a success message
-        return redirect('/source/')->with('success', 'Source created successfully!');
+        return redirect('/source/')->with('success', 'Source crée avec succès!');
     }
 
     /**
@@ -64,8 +66,10 @@ class SourceController extends Controller
      */
     public function show($id)
     {
-        //
+        $source = Source::with('owner')->findOrFail($id);
+        return view('Source.showSource', compact('source'));
     }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -100,7 +104,7 @@ class SourceController extends Controller
             'proprio_renouv' => 'required|string|max:255',   // Ensure propietario is a string
         ]);
         Source::whereId($id)->update($validate_data);
-        return redirect('/source/')->with('success','Source updated successfully');
+        return redirect('/source/')->with('success','Source modifiée avec succès!');
     }
 
     /**
@@ -113,6 +117,6 @@ class SourceController extends Controller
     {
         $source= Source::findOrFail($id);
         $source->delete();
-        return redirect('/source/')->with('success','Source deleted successfully');
+        return redirect('/source/')->with('success','Source supprimée avec succès!');
     }
 }

@@ -19,9 +19,14 @@ class Source extends Model
         'impactCO2_renouv',
         'proprio_renouv'
     ];
-
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'proprio_renouv');
+    }
+    
     public function facture()
     {
         return $this->belongsTo(Facture::class);
     }
+    
 }

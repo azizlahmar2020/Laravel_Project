@@ -1,9 +1,7 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-@include('frontoffice.navbar')
-
+    @include('frontoffice.navbar')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fournisseurs List</title>
@@ -11,6 +9,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Libraries Stylesheet -->
+    <link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <style>
         .custom-background {
             background-color: #f0f8f0; /* Light green background */
@@ -71,12 +75,17 @@
         <div class="custom-container">
             <h2 class="custom-title"><i class="fas fa-building icon"></i> Fournisseurs List</h2>
 
-            <!-- Button to create new fournisseur -->
+            <!-- Champ de recherche -->
+            <div class="mb-3">
+                <input type="text" id="search-input" class="form-control" placeholder="Rechercher un fournisseur...">
+            </div>
+
+            <!-- Bouton pour ajouter un nouveau fournisseur -->
             <div class="text-end mb-3">
                 <a href="{{ route('fournisseurs.create') }}" class="btn btn-success mb-3" id="add-fournisseur-btn"><i class="fas fa-plus"></i> Add New Fournisseur</a>
             </div>
 
-            <!-- Table to display the list of fournisseurs -->
+            <!-- Table pour afficher la liste des fournisseurs -->
             <table class="table table-hover align-middle" id="fournisseur-table">
                 <thead class="table-light">
                     <tr>
@@ -84,6 +93,7 @@
                         <th>Type d'Énergie</th>
                         <th>Tarif</th>
                         <th>Actions</th>
+                        <th>Conseils</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -93,7 +103,6 @@
                         <td>{{ ucfirst($fournisseur->type) }}</td>
                         <td>{{ $fournisseur->tarif }} €</td>
                         <td>
-                            <!-- Action buttons -->
                             <a href="{{ route('fournisseurs.edit', $fournisseur->id) }}" class="btn btn-outline-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
                             <form action="{{ route('fournisseurs.destroy', $fournisseur->id) }}" method="POST" style="display:inline;">
                                 @csrf
@@ -101,10 +110,14 @@
                                 <button type="submit" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>
                             </form>
                         </td>
+                        <td>
+                            <a href="{{ route('conseils.fournisseur', $fournisseur->id) }}" class="btn btn-info btn-sm"><i class="fas fa-lightbulb"></i> Conseils</a>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
+
         </div>
     </div>
 
@@ -118,21 +131,28 @@
                 const alert = new bootstrap.Alert(successAlert);
                 alert.close();
             }, 6000);
-
-            // Highlight the new fournisseur row
-            highlightNewFournisseur();
         }
 
-        function highlightNewFournisseur() {
-            const tableBody = document.querySelector('#fournisseur-table tbody');
-            const newRow = tableBody.lastElementChild; // Assuming the last row is the new fournisseur
-            if (newRow) {
-                newRow.classList.add('highlight'); // Add highlight class
-                setTimeout(() => {
-                    newRow.classList.remove('highlight'); // Remove highlight class after 2 seconds
-                }, 2000);
-            }
-        }
+        // Filtrage dynamique
+        document.getElementById('search-input').addEventListener('keyup', function() {
+            const searchTerm = this.value.toLowerCase();
+            const tableRows = document.querySelectorAll('#fournisseur-table tbody tr');
+
+            tableRows.forEach(row => {
+                const fournisseurName = row.cells[0].textContent.toLowerCase();
+                const energyType = row.cells[1].textContent.toLowerCase();
+
+                if (fournisseurName.includes(searchTerm) || energyType.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
+<div class="d-flex justify-content-center mt-4">
+    {{ $fournisseurs->links() }}
+</div>
 </html>
+@include('frontoffice.footer')

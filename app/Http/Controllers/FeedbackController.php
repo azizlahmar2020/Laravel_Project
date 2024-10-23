@@ -46,7 +46,7 @@ class FeedbackController extends Controller
         Feedback::create($validatedData);
     
         // Redirect to the feedback page with a success message
-        return redirect('/Feedbacks/All')->with('success', 'Feedback submitted successfully!');
+        return redirect('/Feedbacks/All')->with('success', 'Feedback ajouté avec succès!');
     }
     
     /**
@@ -91,7 +91,7 @@ class FeedbackController extends Controller
         $feedback = Feedback::findOrFail($id);
         $feedback->update($validatedData);
     
-        return redirect('/Feedbacks/All')->with('success', 'Feedback updated successfully!');
+        return redirect('/Feedbacks/All')->with('success', 'Feedback modifié avec succès!');
     }
     
     /**
@@ -105,6 +105,24 @@ class FeedbackController extends Controller
         $feedback = Feedback::findOrFail($id);
         $feedback->delete();
     
-        return redirect('/Feedbacks/All')->with('success', 'Feedback deleted successfully!');
+        return redirect('/Feedbacks/All')->with('success', 'Feedback supprimé avec succès!');
     }
+
+    public function statistiques()
+    {
+        $feedbacks = Feedback::all();
+        $ratingsCount = $feedbacks->groupBy('rating')->map->count(); // Compte des évaluations
+    
+        // Préparez les données pour le graphique
+        $labels = range(1, 5); // Étoiles de 1 à 5
+        $data = [];
+    
+        foreach ($labels as $label) {
+            $data[] = $ratingsCount->get($label, 0);
+        }
+    
+        return view('Feedback.statistiques', compact('data', 'labels'));
+    }
+    
+
     }

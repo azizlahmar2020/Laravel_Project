@@ -16,12 +16,11 @@ class ConseilEController extends Controller
      */
     public function index()
     {
-        $conseils = ConseilE::all(); // Récupérer tous les enregistrements ConseilE
-        return view('ConseilE.indexConseilE', compact('conseils'));
-        // Eager loading the fournisseur relationship
-        $conseils = ConseilE::with('fournisseur')->get();
-        return view('ConseilE.indexConseilE', compact('conseils'));
+       // Utiliser la méthode paginate pour récupérer les conseils
+    $conseils = ConseilE::with('fournisseur')->paginate(10); // 10 par page
+    return view('ConseilE.indexConseilE', compact('conseils'));
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -60,10 +59,11 @@ class ConseilEController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showConseils ($id)
     {
-        // Cette méthode peut être laissée vide si vous ne l'utilisez pas.
-    }
+        $fournisseur = Fournisseur::with('conseils')->findOrFail($id); // Load the fournisseur with conseils
+        return view('ConseilE.conseilsByFournisseur', compact('fournisseur')); // Pass it to a new view
+        }
 
     /**
      * Show the form for editing the specified resource.

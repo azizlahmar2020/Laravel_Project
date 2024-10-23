@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Bill</title>
+    <title>Editer la facture</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for Icons -->
@@ -42,7 +42,7 @@
     <!-- Navbar End -->
 <body class="custom-background">
     <div class="container mt-5 custom-container">
-        <h2 class="custom-title"><i class="fas fa-file-invoice"></i> Edit Bill</h2>
+        <h2 class="custom-title"><i class="fas fa-file-invoice"></i> Editer la facture</h2>
         <!-- Form to edit the existing facture -->
         <form action="{{ route('facture.update', $facture->id) }}" method="POST">
             @csrf
@@ -52,16 +52,23 @@
                 <div class="col-md-6">
                     <!-- Consommateur Field -->
                     <div class="mb-3">
-                        <label for="consommateur" class="form-label custom-label"><i class="fas fa-user icon"></i> Consumer</label>
-                        <input type="text" class="form-control" id="consommateur" name="consommateur" value="{{ old('consommateur', $facture->consommateur) }}" >
-                        @error('consommateur')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
+        <label for="consommateur" class="form-label custom-label">
+            <i class="fas fa-user icon"></i> Consommateur
+        </label>
+        <select class="form-control" id="consommateur" name="consommateur">
+            <option value="">Choisir le consommateur</option>
+            @foreach($users as $user)
+                <option value="{{ $user->id }}" {{ $user->id == $facture->consommateur ? 'selected' : '' }}>{{ $user->name }}</option>
+            @endforeach
+        </select>
+        @error('consommateur')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
 
                     <!-- Date Facture Field -->
                     <div class="mb-3">
-                        <label for="date_facture" class="form-label custom-label"><i class="fas fa-calendar-alt icon"></i> Bill date</label>
+                        <label for="date_facture" class="form-label custom-label"><i class="fas fa-calendar-alt icon"></i>Date de la facturation</label>
                         <input type="date" class="form-control" id="date_facture" name="date_facture" value="{{ old('date_facture', $facture->date_facture) }}">
                         @error('date_facture')
                             <div class="text-danger">{{ $message }}</div>
@@ -70,7 +77,7 @@
 
                     <!-- Periode Facture Field -->
                     <div class="mb-3">
-                        <label for="periode_facture" class="form-label custom-label"><i class="fas fa-calendar-week icon"></i>Billing Period</label>
+                        <label for="periode_facture" class="form-label custom-label"><i class="fas fa-calendar-week icon"></i>Période de facturation</label>
                         <input type="text" class="form-control" id="periode_facture" name="periode_facture" value="{{ old('periode_facture', $facture->periode_facture) }}">
                         @error('periode_facture')
                             <div class="text-danger">{{ $message }}</div>
@@ -79,7 +86,7 @@
 
                     <!-- Consommation Totale Field -->
                     <div class="mb-3">
-                        <label for="consommation_totale" class="form-label custom-label"><i class="fas fa-tachometer-alt icon"></i> Total Consumption (kWh)</label>
+                        <label for="consommation_totale" class="form-label custom-label"><i class="fas fa-tachometer-alt icon"></i> Consommation totale (kWh)</label>
                         <input type="number" class="form-control" id="consommation_totale" name="consommation_totale" value="{{ old('consommation_totale', $facture->consommation_totale) }}">
                         @error('consommation_totale')
                             <div class="text-danger">{{ $message }}</div>
@@ -88,7 +95,7 @@
 
                     <!-- Prix Unitaire Field -->
                     <div class="mb-3">
-                        <label for="prix_unitaire" class="form-label custom-label"><i class="fas fa-euro-sign icon"></i>Unit Price (dt/ kWh)</label>
+                        <label for="prix_unitaire" class="form-label custom-label"><i class="fas fa-euro-sign icon"></i>Prix unitaire (dt/ kWh)</label>
                         <input type="number" step="0.01" class="form-control" id="prix_unitaire" name="prix_unitaire" value="{{ old('prix_unitaire', $facture->prix_unitaire) }}">
                         @error('prix_unitaire')
                             <div class="text-danger">{{ $message }}</div>
@@ -99,7 +106,7 @@
                 <div class="col-md-6">
                     <!-- Montant Totale Field -->
                     <div class="mb-3">
-                        <label for="montant_totale" class="form-label custom-label"><i class="fas fa-euro-sign icon"></i>Total Price</label>
+                        <label for="montant_totale" class="form-label custom-label"><i class="fas fa-euro-sign icon"></i>Prix total</label>
                         <input type="number" step="0.01" class="form-control" id="montant_totale" name="montant_totale" value="{{ old('montant_totale', $facture->montant_totale) }}">
                         @error('montant_totale')
                             <div class="text-danger">{{ $message }}</div>
@@ -108,9 +115,9 @@
 
                     <!-- Type d'Energie Field -->
                     <div class="mb-3">
-                        <label for="type_energie" class="form-label custom-label"><i class="fas fa-plug icon"></i>Energy Type</label>
+                        <label for="type_energie" class="form-label custom-label"><i class="fas fa-plug icon"></i>Type d'énergie</label>
                         <select class="form-control" id="type_energie" name="type_energie">
-                    
+
 
                             <option value="electricity" {{ $facture->type_energie === 'electricity' ? 'selected' : '' }}>Electricity</option>
                             <option value="gas" {{ $facture->type_energie === 'gas' ? 'selected' : '' }}>Gas</option>
@@ -124,7 +131,7 @@
 
                     <!-- Emission Carbone Field -->
                     <div class="mb-3">
-                        <label for="emission_carbone" class="form-label custom-label"><i class="fas fa-tree icon"></i>Carbon Emission (tonnes)</label>
+                        <label for="emission_carbone" class="form-label custom-label"><i class="fas fa-tree icon"></i>Emission de CO2</label>
                         <input type="number" step="0.01" class="form-control" id="emission_carbone" name="emission_carbone" value="{{ old('emission_carbone', $facture->emission_carbone) }}">
                         @error('emission_carbone')
                             <div class="text-danger">{{ $message }}</div>
@@ -133,7 +140,7 @@
 
                     <!-- Moyen Paiement Field -->
                     <div class="mb-3">
-                        <label for="moyen_paiement" class="form-label custom-label"><i class="fas fa-credit-card icon"></i>Payment Method</label>
+                        <label for="moyen_paiement" class="form-label custom-label"><i class="fas fa-credit-card icon"></i>Méthode de paiement</label>
                         <select class="form-control" id="moyen_paiement" name="moyen_paiement">
                             <option value="Credit Card" {{ $facture->moyen_paiement === 'Credit Card' ? 'selected' : '' }}>Credit Card</option>
                             <option value="Bank Transfer" {{ $facture->moyen_paiement === 'virement' ? 'selected' : '' }}>Bank Transfer</option>
@@ -159,7 +166,7 @@
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="btn btn-submit w-100"><i class="fas fa-paper-plane"></i> Update Facture</button>
+            <button type="submit" class="btn btn-submit w-100"><i class="fas fa-paper-plane"></i> Editer la facture</button>
         </form>
     </div>
 

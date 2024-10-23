@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Feedback</title>
+    <title>Editer un Feedback</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #f0f8f0;
         }
         .feedback-form-container {
             max-width: 600px;
@@ -55,24 +55,24 @@
                 <!-- Email Field -->
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $feedback->email) }}" required>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $feedback->email) }}" >
                 </div>
 
                 <!-- Comment Field -->
                 <div class="mb-3">
-                    <label for="comment" class="form-label">Comment</label>
-                    <textarea class="form-control" id="comment" name="comment" rows="4" required>{{ old('comment', $feedback->comment) }}</textarea>
+                    <label for="comment" class="form-label">Commentaire</label>
+                    <textarea class="form-control" id="comment" name="comment" rows="4" >{{ old('comment', $feedback->comment) }}</textarea>
                 </div>
 
                 <!-- Date Field -->
                 <div class="mb-3">
                     <label for="date" class="form-label">Date</label>
-                    <input type="date" class="form-control" id="date" name="date" value="{{ old('date', $feedback->date) }}" required>
+                    <input type="date" class="form-control" id="date" name="date" value="{{ old('date', $feedback->date) }}" >
                 </div>
 
                 <!-- Rating Field (Star Rating) -->
                 <div class="mb-3">
-                    <label for="rating" class="form-label">Rating</label>
+                    <label for="rating" class="form-label">Evaluation</label>
                     <div class="rating">
                         @for ($i = 5; $i >= 1; $i--)
                             <input type="radio" id="star{{ $i }}" name="rating" value="{{ $i }}" {{ $i == old('rating', $feedback->rating) ? 'checked' : '' }}>
@@ -83,7 +83,7 @@
 
                 <!-- Submit Button -->
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-success btn-lg">Update Feedback</button>
+                    <button type="submit" class="btn btn-success btn-lg">Editer Feedback</button>
                 </div>
             </form>
         </div>

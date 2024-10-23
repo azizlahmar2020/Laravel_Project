@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Feedback</title>
+    <title>Ajouter un Feedback</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for Icons -->
@@ -40,7 +40,7 @@
 @include('frontoffice.navbar')
 
     <div class="container mt-5 custom-container">
-        <h2 class="custom-title"><i class="fas fa-comments"></i> Create Feedback</h2>
+        <h2 class="custom-title"><i class="fas fa-comments"></i> Ajouter un Feedback</h2>
 
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -57,25 +57,25 @@
 
             <!-- Comment Field -->
             <div class="mb-3">
-                <label for="comment" class="form-label custom-label"><i class="fas fa-pencil-alt icon"></i> Comment</label>
+                <label for="comment" class="form-label custom-label"><i class="fas fa-pencil-alt icon"></i> Commentaire</label>
                 <textarea class="form-control" id="comment" name="comment" rows="4"></textarea>
             </div>
 
             <!-- Email Field -->
             <div class="mb-3">
                 <label for="email" class="form-label custom-label"><i class="fas fa-envelope icon"></i> Email</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <input type="email" class="form-control" id="email" name="email" >
             </div>
 
             <!-- Date Field -->
             <div class="mb-3">
                 <label for="date" class="form-label custom-label"><i class="fas fa-calendar-alt icon"></i> Date</label>
-                <input type="date" class="form-control" id="date" name="date" required>
+                <input type="date" class="form-control" id="date" name="date" >
             </div>
 
             <!-- Rating Field -->
             <div class="mb-3">
-                <label class="form-label custom-label"><i class="fas fa-star icon"></i> Rating</label>
+                <label class="form-label custom-label"><i class="fas fa-star icon"></i> Evaluation</label>
                 <div class="star-rating">
                     <span class="fa fa-star" data-value="1"></span>
                     <span class="fa fa-star" data-value="2"></span>
@@ -87,7 +87,7 @@
             </div>
 
             <!-- Submit Button -->
-            <button type="submit" class="btn btn-submit w-100"><i class="fas fa-paper-plane"></i> Submit</button>
+            <button type="submit" class="btn btn-submit w-100"><i class="fas fa-paper-plane"></i> Ajouter</button>
         </form>
     </div>
 

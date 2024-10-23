@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('transports', function (Blueprint $table) {
             $table->bigIncrements('id'); // Use 'id' as the default primary key
+            $table->string('consommateur'); 
             $table->string('type'); // Type of transport (e.g., voiture, vélo)
             $table->float('distance'); // Distance travelled
             $table->float('emissions_CO2'); // CO2 emissions

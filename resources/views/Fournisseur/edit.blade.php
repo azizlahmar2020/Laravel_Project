@@ -10,6 +10,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+     <!-- Libraries Stylesheet -->
+<link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
+<link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+<link href="{{ asset('lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <style>
         .custom-background {
             background-color: #f0f8f0; /* Light green background */
@@ -60,13 +66,13 @@
             <!-- Nom du Fournisseur Field -->
             <div class="mb-3">
                 <label for="nom" class="form-label custom-label"><i class="fas fa-user icon"></i> Nom du Fournisseur</label>
-                <input type="text" class="form-control" id="nom" name="nom" value="{{ old('nom', $fournisseur->nom) }}" required>
+                <input type="text" class="form-control" id="nom" name="nom" value="{{ old('nom', $fournisseur->nom) }}" >
             </div>
 
             <!-- Type d'Énergie Field -->
             <div class="mb-3">
                 <label for="type" class="form-label custom-label"><i class="fas fa-plug icon"></i> Type d'Énergie</label>
-                <select class="form-control" id="type" name="type" required>
+                <select class="form-control" id="type" name="type" >
                     <option value="Coal" {{ $fournisseur->type === 'Coal' ? 'selected' : '' }}>Coal</option>
                     <option value="gaz" {{ $fournisseur->type === 'gaz' ? 'selected' : '' }}>Gaz</option>
                     <option value="Oil" {{ $fournisseur->type === 'Oil' ? 'selected' : '' }}>Oil</option>
@@ -80,15 +86,19 @@
             <!-- Tarif Field -->
             <div class="mb-3">
                 <label for="tarif" class="form-label custom-label"><i class="fas fa-money-bill-wave icon"></i> Tarif</label>
-                <input type="number" class="form-control" id="tarif" name="tarif" value="{{ old('tarif', $fournisseur->tarif) }}" min="0" step="0.01" required>
+                <input type="number" class="form-control" id="tarif" name="tarif" value="{{ old('tarif', $fournisseur->tarif) }}" min="0" step="0.01" >
             </div>
 
             <!-- Submit Button -->
             <button type="submit" class="btn btn-submit w-100"><i class="fas fa-paper-plane"></i> Mettre à jour</button>
+            <a href="/fournisseurs"  class="btn btn-danger w-100"><i class="fas fa-times"></i> cancel</a>
+
         </form>
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+@include('frontoffice.footer')
+
 </html>
