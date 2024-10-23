@@ -6,10 +6,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Créer un Nouveau Conseil</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Bootstrap CSS -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">     <!-- Libraries Stylesheet -->
+<link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
+<link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+<link href="{{ asset('lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <style>
         .custom-background {
             background-color: #f0f8f0; /* Light green background */
@@ -78,20 +83,20 @@
             <!-- Description du Conseil Field -->
             <div class="mb-3">
                 <label for="description" class="form-label custom-label"><i class="fas fa-comment-dots icon"></i> Description du Conseil</label>
-                <input type="text" class="form-control" id="description" name="description" required>
+                <input type="text" class="form-control" id="description" name="description" >
             </div>
 
             <!-- Économie Potentielle Field -->
             <div class="mb-3">
     <label for="economies" class="form-label custom-label"><i class="fas fa-chart-line icon"></i> Économie Potentielle (kWh)</label>
-    <input type="number" class="form-control" id="economies" name="economies" min="0" step="0.01" required value="{{ old('economies', $conseils->economies ?? '') }}">
+    <input type="number" class="form-control" id="economies" name="economies"  step="0.01"  value="{{ old('economies', $conseils->economies ?? '') }}">
 </div>
 
 
             <!-- Unit Selection Field -->
             <div class="mb-3">
                 <label for="unit" class="form-label custom-label"><i class="fas fa-signal icon"></i> Unité</label>
-                <select class="form-select" id="unit" name="unit" required>
+                <select class="form-select" id="unit" name="unit" >
                     <option value="kWh">kWh</option>
                 </select>
             </div>
@@ -99,7 +104,7 @@
             <!-- Fournisseur Selection Field -->
             <div class="mb-3">
                 <label for="fournisseur_id" class="form-label custom-label"><i class="fas fa-building icon"></i> Fournisseur</label>
-                <select class="form-select" id="fournisseur_id" name="fournisseur_id" required>
+                <select class="form-select" id="fournisseur_id" name="fournisseur_id" >
                     <option value="">Sélectionnez un fournisseur</option>
                     @foreach($fournisseurs as $fournisseur)
                         <option value="{{ $fournisseur->id }}">{{ $fournisseur->nom }}</option>
@@ -110,7 +115,7 @@
             <!-- CO2 Calculation Section -->
             <div class="mb-3">
     <label for="kWhInput" class="form-label custom-label"><i class="fas fa-calculator icon"></i> KWh</label>
-    <input type="number" class="form-control" id="kWhInput" placeholder="Entrez les kWh" required oninput="updateEconomies()">
+    <input type="number" class="form-control" id="kWhInput" placeholder="Entrez les kWh"  oninput="updateEconomies()">
 </div>
             <button type="button" class="btn btn-submit w-100" onclick="calculateCO2()"><i class="fas fa-calculator"></i> Calculer CO2</button>
             <p id="co2Result" class="mt-3"></p>
@@ -123,4 +128,6 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+@include('frontoffice.footer')
+
 </html>

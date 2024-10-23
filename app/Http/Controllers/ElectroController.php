@@ -16,7 +16,7 @@ class ElectroController extends Controller
     public function index()
     {
         // Retourner tous les électros
-        $electros = Electro::all();
+        $electros = Electro::paginate(10);
         return view('electros.indexElectro', compact('electros'));
     }
 
