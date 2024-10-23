@@ -55,19 +55,19 @@
                 <!-- Email Field -->
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $feedback->email) }}" required>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $feedback->email) }}" >
                 </div>
 
                 <!-- Comment Field -->
                 <div class="mb-3">
                     <label for="comment" class="form-label">Commentaire</label>
-                    <textarea class="form-control" id="comment" name="comment" rows="4" required>{{ old('comment', $feedback->comment) }}</textarea>
+                    <textarea class="form-control" id="comment" name="comment" rows="4" >{{ old('comment', $feedback->comment) }}</textarea>
                 </div>
 
                 <!-- Date Field -->
                 <div class="mb-3">
                     <label for="date" class="form-label">Date</label>
-                    <input type="date" class="form-control" id="date" name="date" value="{{ old('date', $feedback->date) }}" required>
+                    <input type="date" class="form-control" id="date" name="date" value="{{ old('date', $feedback->date) }}" >
                 </div>
 
                 <!-- Rating Field (Star Rating) -->
