@@ -83,19 +83,19 @@
             <!-- Description du Conseil Field -->
             <div class="mb-3">
                 <label for="description" class="form-label custom-label"><i class="fas fa-comment-dots icon"></i> Description du Conseil</label>
-                <input type="text" class="form-control" id="description" name="description" value="{{ old('description', $conseils->description) }}" required>
+                <input type="text" class="form-control" id="description" name="description" value="{{ old('description', $conseils->description) }}" >
             </div>
 
             <!-- Économie Potentielle Field -->
             <div class="mb-3">
                 <label for="economies" class="form-label custom-label"><i class="fas fa-chart-line icon"></i> Économie Potentielle (kWh)</label>
-                <input type="number" class="form-control" id="economies" name="economies" value="{{ old('economies', $conseils->economies) }}" min="0" step="0.01" required readonly>
+                <input type="number" class="form-control" id="economies" name="economies" value="{{ old('economies', $conseils->economies) }}" min="0" step="0.01"  readonly>
             </div>
 
             <!-- Unit Selection Field -->
             <div class="mb-3">
                 <label for="unit" class="form-label custom-label"><i class="fas fa-signal icon"></i> Unité</label>
-                <select class="form-select" id="unit" name="unit" required>
+                <select class="form-select" id="unit" name="unit" >
                     <option value="kWh" {{ old('unit', $conseils->unit) == 'kWh' ? 'selected' : '' }}>kWh</option>
                 </select>
             </div>
@@ -103,7 +103,7 @@
             <!-- Fournisseur Selection Field -->
             <div class="mb-3">
     <label class="form-label custom-label"><i class="fas fa-building icon"></i> Fournisseur</label>
-    <div class="form-control" style="border: none; background: transparent;"> 
+    <div class="form-control" style="border: none; background: transparent;">
         {{ $fournisseurs->firstWhere('id', $conseils->fournisseur_id)->nom ?? 'Aucun fournisseur sélectionné' }}
     </div>
 </div>
@@ -112,7 +112,7 @@
             <!-- KWh Input Field -->
             <div class="mb-3">
                 <label for="kWhInput" class="form-label custom-label"><i class="fas fa-calculator icon"></i> KWh</label>
-                <input type="number" class="form-control" id="kWhInput" name="kWh" placeholder="Entrez les kWh" value="{{ old('kWh', $conseils->kWh) }}" required oninput="updateEconomies()">
+                <input type="number" class="form-control" id="kWhInput" name="kWh" placeholder="Entrez les kWh" value="{{ old('kWh', $conseils->kWh) }}"  oninput="updateEconomies()">
             </div>
 
             <button type="button" class="btn btn-submit w-100" onclick="calculateCO2()"><i class="fas fa-calculator"></i> Calculer CO2</button>
