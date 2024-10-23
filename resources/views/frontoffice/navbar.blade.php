@@ -72,15 +72,11 @@
             <!-- Bouton de déconnexion -->
             <form method="POST" action="{{ route('logout') }}" class="nav-item">
                 @csrf
-                <button type="submit" class="nav-link btn btn-link" style="color: #000000; text-decoration: none;">
+                <button type="submit" class="btn btn-custom-green rounded-0 py-4 px-lg-5 d-none d-lg-block" style="color: #000000; text-decoration: none;">
                     Logout
                 </button>
             </form>
         </div>
-        <!-- Bouton avec fond vert, texte "Get A Quote" en noir, et icône blanche -->
-        <a href="" class="btn btn-custom-green rounded-0 py-4 px-lg-5 d-none d-lg-block">
-            <span>Get A Quote</span>
-            <i class="fa fa-arrow-right ms-3 text-white"></i>
-        </a>
+
     </div>
 </nav>
