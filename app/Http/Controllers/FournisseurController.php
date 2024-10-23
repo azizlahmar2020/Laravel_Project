@@ -37,7 +37,7 @@ class FournisseurController extends Controller
     public function store(Request $request)
     {
         $validate_data = $request->validate([
-            'nom' => '',
+            'nom' => 'required',
             'type' => 'required',
             'tarif' => 'required|numeric', // Le tarif doit être un nombre
         ]);
@@ -65,7 +65,7 @@ class FournisseurController extends Controller
      */
     public function edit($id)
     {
-        $fournisseur = Fournisseur::with('conseils')->findOrFail($id); 
+        $fournisseur = Fournisseur::with('conseils')->findOrFail($id);
         return view('Fournisseur.edit', compact('fournisseur'));
     }
 
