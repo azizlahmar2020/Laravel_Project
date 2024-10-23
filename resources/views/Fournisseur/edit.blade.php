@@ -66,13 +66,13 @@
             <!-- Nom du Fournisseur Field -->
             <div class="mb-3">
                 <label for="nom" class="form-label custom-label"><i class="fas fa-user icon"></i> Nom du Fournisseur</label>
-                <input type="text" class="form-control" id="nom" name="nom" value="{{ old('nom', $fournisseur->nom) }}" required>
+                <input type="text" class="form-control" id="nom" name="nom" value="{{ old('nom', $fournisseur->nom) }}" >
             </div>
 
             <!-- Type d'Énergie Field -->
             <div class="mb-3">
                 <label for="type" class="form-label custom-label"><i class="fas fa-plug icon"></i> Type d'Énergie</label>
-                <select class="form-control" id="type" name="type" required>
+                <select class="form-control" id="type" name="type" >
                     <option value="Coal" {{ $fournisseur->type === 'Coal' ? 'selected' : '' }}>Coal</option>
                     <option value="gaz" {{ $fournisseur->type === 'gaz' ? 'selected' : '' }}>Gaz</option>
                     <option value="Oil" {{ $fournisseur->type === 'Oil' ? 'selected' : '' }}>Oil</option>
@@ -86,13 +86,13 @@
             <!-- Tarif Field -->
             <div class="mb-3">
                 <label for="tarif" class="form-label custom-label"><i class="fas fa-money-bill-wave icon"></i> Tarif</label>
-                <input type="number" class="form-control" id="tarif" name="tarif" value="{{ old('tarif', $fournisseur->tarif) }}" min="0" step="0.01" required>
+                <input type="number" class="form-control" id="tarif" name="tarif" value="{{ old('tarif', $fournisseur->tarif) }}" min="0" step="0.01" >
             </div>
 
             <!-- Submit Button -->
             <button type="submit" class="btn btn-submit w-100"><i class="fas fa-paper-plane"></i> Mettre à jour</button>
             <a href="/fournisseurs"  class="btn btn-danger w-100"><i class="fas fa-times"></i> cancel</a>
-            
+
         </form>
     </div>
 
