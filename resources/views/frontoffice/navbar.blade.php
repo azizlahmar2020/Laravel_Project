@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 <style>
     /* Couleur noire pour tous les textes par défaut */
     .navbar-nav .nav-link {
@@ -39,7 +41,7 @@
 </style>
 
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-    <a href="index.html" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
+    <a href="/dashboard" class="navbar-brand d-flex align-items-center border-end px-4 px-lg-5">
         <!-- Texte Solartec en vert -->
         <h2 class="m-0">Solartec</h2>
     </a>
@@ -67,15 +69,17 @@
             <a href="" class="nav-item nav-link">About</a>
             <a href="" class="nav-item nav-link">Service</a>
             <a href="/profile" class="nav-item nav-link">Profile</a>
-            <a href="contact.html" class="nav-item nav-link">Contact</a>
 
             <!-- Bouton de déconnexion -->
             <form method="POST" action="{{ route('logout') }}" class="nav-item">
-                @csrf
-                <button type="submit" class="btn btn-custom-green rounded-0 py-4 px-lg-5 d-none d-lg-block" style="color: #000000; text-decoration: none;">
-                    Logout
-                </button>
-            </form>
+    @csrf
+    <button type="submit" class="btn btn-custom-green rounded-0 py-4 px-lg-5 d-none d-lg-block"
+            style="color: #000000; text-decoration: none; background-color: #ffc107; border: none; display: flex; align-items: center;">
+        <i class="fas fa-sign-out-alt" style="margin-right: 8px;"></i> <!-- Icône Font Awesome -->
+        Logout
+    </button>
+</form>
+
         </div>
 
     </div>

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Facture; // Ensure the Source model is imported
 use App\Models\Source; // Ensure the Source model is imported
 use PDF;
-use App\Models\User; 
+use App\Models\User;
 
 class FactureController extends Controller
 {
@@ -18,11 +18,11 @@ class FactureController extends Controller
      */
     public function index()
     {
-        $factures = Facture::with('owner')->get(); 
+        $factures = Facture::with('owner')->get();
         return view('Facture.indexFacture', compact('factures'));
         }
 
-    
+
     /**
      * Show the form for creating a new resource.
      *
@@ -30,7 +30,7 @@ class FactureController extends Controller
      */
     public function create()
     {
-        $users = User::all(); 
+        $users = User::all();
         return view ('Facture.createFacture',compact('users'));
     }
 
@@ -45,26 +45,26 @@ class FactureController extends Controller
         // Validate the incoming request data
         $validate_data = $request->validate([
             'consommateur' => 'required|exists:users,id',  // Validation correcte du consommateur
-            'date_facture' => 'required|date', 
-            'montant_totale' => 'required|numeric|min:0', 
-            'periode_facture' => 'required|string|max:255', 
-            'consommation_totale' => 'required|numeric|min:0', 
-            'prix_unitaire' => 'required|numeric|min:0', 
-            'type_energie' => 'required|string|max:255', 
+            'date_facture' => 'required|date',
+            'montant_totale' => 'required|numeric|min:0',
+            'periode_facture' => 'required|string|max:255',
+            'consommation_totale' => 'required|numeric|min:0',
+            'prix_unitaire' => 'required|numeric|min:0',
+            'type_energie' => 'required|string|max:255',
             'emission_carbone' => 'required|numeric|min:0',
             'moyen_paiement' => 'required|string|max:255',
-            'statut' => 'required|string|max:255',      
+            'statut' => 'required|string|max:255',
         ]);
-    
+
         // Create a new Facture instance with validated data
         $facture = Facture::create($validate_data);
-    
+
         // Redirect to the invoices (factures) index page with a success message
         return redirect('/facture/')->with('success', 'Facture crée avec succès!');
     }
-    
 
- 
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -74,10 +74,10 @@ class FactureController extends Controller
      */
     public function edit($id)
     {
+        $users = User::all();
         $facture  = Facture::findOrfail($id);
-        return view('Facture.editFacture',compact('facture'));
+        return view('Facture.editFacture',compact('facture','users'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -100,14 +100,14 @@ class FactureController extends Controller
             'moyen_paiement' => 'required|string|max:255',         // Payment method
             'statut' => 'required|string|max:255',                  // Status
         ]);
-    
+
         // Find the facture by ID and update it with validated data
         Facture::whereId($id)->update($validatedData);
-    
+
         // Redirect to the 'facture' index with a success message
         return redirect('/facture/')->with('success', 'Facture modifiée avec succès!');
     }
-    
+
 
     /**
      * Remove the specified resource from storage.

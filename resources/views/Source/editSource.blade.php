@@ -63,35 +63,36 @@
                     <!-- Source Name Field -->
                     <div class="mb-3">
                         <label for="nom_renouv" class="form-label custom-label"><i class="fas fa-bolt icon"></i>Nom de la source</label>
-                        <input type="text" class="form-control" id="nom_renouv" name="nom_renouv" value="{{ old('nom_renouv', $source->nom_renouv) }}" required>
+                        <input type="text" class="form-control" id="nom_renouv" name="nom_renouv" value="{{ old('nom_renouv', $source->nom_renouv) }}" >
                     </div>
 
                     <!-- Description Field -->
                     <div class="mb-3">
                         <label for="desc_renouv" class="form-label custom-label"><i class="fas fa-info-circle icon"></i> Description</label>
-                        <textarea class="form-control" id="desc_renouv" name="desc_renouv" rows="3" required>{{ old('desc_renouv', $source->desc_renouv) }}</textarea>
+                        <textarea class="form-control" id="desc_renouv" name="desc_renouv" rows="3"
+                        >{{ old('desc_renouv', $source->desc_renouv) }}</textarea>
                     </div>
 
                     <!-- Power Max (kW) Field -->
                     <div class="mb-3">
                         <label for="puissMax_renouv" class="form-label custom-label"><i class="fas fa-tachometer-alt icon"></i> Puissance Max (kW)</label>
-                        <input type="number" class="form-control" id="puissMax_renouv" name="puissMax_renouv" value="{{ old('puissMax_renouv', $source->puissMax_renouv) }}" required>
+                        <input type="number" class="form-control" id="puissMax_renouv" name="puissMax_renouv" value="{{ old('puissMax_renouv', $source->puissMax_renouv) }}"  >
                     </div>
 
                     <!-- Commissioning Date Field -->
                     <div class="mb-3">
                         <label for="date_renouv" class="form-label custom-label"><i class="fas fa-calendar-alt icon"></i>Date de commission</label>
-                        <input type="date" class="form-control" id="date_renouv" name="date_renouv" value="{{ old('date_renouv', $source->date_renouv) }}" required>
+                        <input type="date" class="form-control" id="date_renouv" name="date_renouv" value="{{ old('date_renouv', $source->date_renouv) }}"  >
                     </div>
 
-                  
+
                 </div>
 
                 <div class="col-md-6">
                       <!-- Type of Energy Field -->
                       <div class="mb-3">
                         <label for="typeE_renouv" class="form-label custom-label"><i class="fas fa-plug icon"></i> Type d'énergie</label>
-                        <select class="form-control" id="typeE_renouv" name="typeE_renouv" required>
+                        <select class="form-control" id="typeE_renouv" name="typeE_renouv"  >
                             <option value="solar" {{ $source->typeE_renouv === 'solar' ? 'selected' : '' }}>Solar</option>
                             <option value="wind" {{ $source->typeE_renouv === 'wind' ? 'selected' : '' }}>Wind</option>
                             <option value="hydro" {{ $source->typeE_renouv === 'hydro' ? 'selected' : '' }}>Hydro</option>
@@ -101,26 +102,26 @@
                     <!-- Estimated Production (kWh) Field -->
                     <div class="mb-3">
                         <label for="prodEstime_renouv" class="form-label custom-label"><i class="fas fa-battery-three-quarters icon"></i>Production éstimée (kWh)</label>
-                        <input type="number" class="form-control" id="prodEstime_renouv" name="prodEstime_renouv" value="{{ old('prodEstime_renouv', $source->prodEstime_renouv) }}" required>
+                        <input type="number" class="form-control" id="prodEstime_renouv" name="prodEstime_renouv" value="{{ old('prodEstime_renouv', $source->prodEstime_renouv) }}"  >
                     </div>
 
                     <!-- Installation Cost (€) Field -->
                     <div class="mb-3">
                         <label for="coutInstall_renouv" class="form-label custom-label"><i class="fas fa-euro-sign icon"></i>Coût d'installation (€)</label>
-                        <input type="number" step="0.01" class="form-control" id="coutInstall_renouv" name="coutInstall_renouv" value="{{ old('coutInstall_renouv', $source->coutInstall_renouv) }}" required>
+                        <input type="number" step="0.01" class="form-control" id="coutInstall_renouv" name="coutInstall_renouv" value="{{ old('coutInstall_renouv', $source->coutInstall_renouv) }}"  >
                     </div>
 
                     <!-- CO2 Impact (tonnes) Field -->
                     <div class="mb-3">
                         <label for="impactCO2_renouv" class="form-label custom-label"><i class="fas fa-cloud icon"></i>Impact de CO2 (tonnes)</label>
-                        <input type="number" step="0.01" class="form-control" id="impactCO2_renouv" name="impactCO2_renouv" value="{{ old('impactCO2_renouv', $source->impactCO2_renouv) }}" required>
+                        <input type="number" step="0.01" class="form-control" id="impactCO2_renouv" name="impactCO2_renouv" value="{{ old('impactCO2_renouv', $source->impactCO2_renouv) }}"  >
                     </div>
 
-                  
+
                     <!-- Proprietor Field -->
                     <div class="mb-3">
                         <label for="proprietaire_renouv" class="form-label custom-label"><i class="fas fa-user icon"></i>Consommateur</label>
-                        <input type="text" class="form-control" id="proprietaire_renouv" name="proprio_renouv" value="{{ old('proprio_renouv', $source->proprio_renouv) }}" required>
+                        <input type="text" class="form-control" id="proprietaire_renouv" name="proprio_renouv" value="{{ old('proprio_renouv', $source->proprio_renouv) }}"  >
                     </div>
                 </div>
             </div>

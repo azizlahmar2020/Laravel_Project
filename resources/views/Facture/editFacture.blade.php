@@ -52,12 +52,19 @@
                 <div class="col-md-6">
                     <!-- Consommateur Field -->
                     <div class="mb-3">
-                        <label for="consommateur" class="form-label custom-label"><i class="fas fa-user icon"></i> Consommateur</label>
-                        <input type="text" class="form-control" id="consommateur" name="consommateur" value="{{ old('consommateur', $facture->consommateur) }}" >
-                        @error('consommateur')
-                            <div class="text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
+        <label for="consommateur" class="form-label custom-label">
+            <i class="fas fa-user icon"></i> Consommateur
+        </label>
+        <select class="form-control" id="consommateur" name="consommateur">
+            <option value="">Choisir le consommateur</option>
+            @foreach($users as $user)
+                <option value="{{ $user->id }}" {{ $user->id == $facture->consommateur ? 'selected' : '' }}>{{ $user->name }}</option>
+            @endforeach
+        </select>
+        @error('consommateur')
+            <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
 
                     <!-- Date Facture Field -->
                     <div class="mb-3">
@@ -110,7 +117,7 @@
                     <div class="mb-3">
                         <label for="type_energie" class="form-label custom-label"><i class="fas fa-plug icon"></i>Type d'énergie</label>
                         <select class="form-control" id="type_energie" name="type_energie">
-                    
+
 
                             <option value="electricity" {{ $facture->type_energie === 'electricity' ? 'selected' : '' }}>Electricity</option>
                             <option value="gas" {{ $facture->type_energie === 'gas' ? 'selected' : '' }}>Gas</option>
