@@ -16,6 +16,8 @@ class LogementController extends Controller
      public function index(Request $request)
      {
          $search = $request->get('search');
+         $sortBy = $request->get('sort_by', 'address'); // Colonne par défaut pour trier
+         $sortOrder = $request->get('sort_order', 'asc'); // Ordre par défaut
 
          // Requête de base pour obtenir tous les logements
          $logements = Logement::query();
@@ -28,12 +30,16 @@ class LogementController extends Controller
                        ->orWhere('nbr_habitant', 'LIKE', "%{$search}%");
          }
 
+         // Appliquer le tri
+         $logements->orderBy($sortBy, $sortOrder);
+
          // Obtenir les résultats
          $logements = $logements->paginate(7);
 
          // Retourner la vue avec les résultats
-         return view('Logement.indexLogement', compact('logements', 'search'));
+         return view('Logement.indexLogement', compact('logements', 'search', 'sortBy', 'sortOrder'));
      }
+
 
 
 
