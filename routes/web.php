@@ -41,7 +41,7 @@ Route::resource('transports', TransportController::class);
 Route::get('/transport/create', [TransportController::class, 'create'])->name('transports.createTransport');
 Route::get('transports/{id}/edit', [TransportController::class, 'edit'])->name('transports.editTransport');
 Route::put('transports/{id}', [TransportController::class, 'update'])->name('transports.update');
-
+Route::get('/feedstat', [FeedbackController::class, 'statistiques'])->name('feedback.statistiques');
 Route::resource('source', SourceController::class);
 Route::resource('facture', FactureController::class);
 Route::resource('fournisseurs', FournisseurController::class);
@@ -50,7 +50,12 @@ Route::get('electros', [ElectroController::class, 'index'])->name('electros.inde
 Route::get('/logements/search', [LogementController::class, 'search'])->name('Logement.search');
 Route::get('/electros/statistics', [ElectroController::class, 'statistics'])->name('electros.statistics');
 Route::get('/export-pdf-Electro', 'StatController@exportPDF');
-
+Route::get('transports/{id}', [TransportController::class, 'show'])->name('transports.show');
+Route::get('/statistics', [TransportController::class, 'statistics'])->name('transports.statistics');
+Route::post('/facture/{id}/add-source', [FactureController::class, 'addSource'])->name('facture.addSource');
+Route::post('/facture/{id}/calculate-source', [FactureController::class, 'calculateSource']);
+Route::get('/factures/{id}', [FactureController::class, 'show'])->name('facture.showFacture');
+Route::get('facture/exportPdf/{id}', [FactureController::class, 'exportPdf'])->name('facture.exportPdf');
 Route::resource('Logement', LogementController::class);
 Route::get('/', function () {
     return view('auth.login');
