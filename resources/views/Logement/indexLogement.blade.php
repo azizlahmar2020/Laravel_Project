@@ -192,4 +192,6 @@
     });
 </script>
 </body>
+@include('frontoffice.footer') <!-- Footer inclus dans le body -->
+
 </html>
