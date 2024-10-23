@@ -14,7 +14,7 @@ class LogementController extends Controller
      */
     public function index()
     {
-        $logements = Logement::all(); ; // Retrieve all Logement records
+        $logements = Logement::paginate(10);// Retrieve all Logement records
         return view('Logement.indexLogement', compact('logements'));
     }
 

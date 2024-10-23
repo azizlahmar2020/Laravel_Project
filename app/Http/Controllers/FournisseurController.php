@@ -14,7 +14,7 @@ class FournisseurController extends Controller
      */
     public function index()
     {
-        $fournisseurs = Fournisseur::all(); // Récupérer tous les enregistrements Fournisseur
+        $fournisseurs = Fournisseur::paginate(10); // Récupérer tous les enregistrements Fournisseur
         return view('Fournisseur.indexFournisseur', compact('fournisseurs'));
     }
 
@@ -65,7 +65,7 @@ class FournisseurController extends Controller
      */
     public function edit($id)
     {
-        $fournisseur = Fournisseur::findOrFail($id);
+        $fournisseur = Fournisseur::with('conseils')->findOrFail($id); 
         return view('Fournisseur.edit', compact('fournisseur'));
     }
 

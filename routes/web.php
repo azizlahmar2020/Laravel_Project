@@ -25,6 +25,7 @@ use App\Http\Controllers\TransportController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/fournisseurs/{id}/conseils', [ConseilEController::class, 'showConseils'])->name('conseils.fournisseur');
 
 Route::resource('Electros', ElectroController::class);
 // Route pour afficher le formulaire d'édition

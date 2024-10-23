@@ -14,7 +14,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
+        $this->call(FournisseurSeeder::class);
+        $this->call(ConseilESeeder::class);
+        $this->call(LogementSeeder::class);
+        $this->call(SourceSeeder::class);
+        $this->call(transportSeeder::class);
+        $this->call(FeedbackSeeder::class);
+        $this->call(FactureSeeder::class);
+        $this->call(ElectroSeeder::class);
         $this->call(EnergyConsumptionSeeder::class);
         // \App\Models\User::factory(10)->create();
 
