@@ -66,7 +66,7 @@
             </div>
             <a href="" class="nav-item nav-link">About</a>
             <a href="" class="nav-item nav-link">Service</a>
-            <a href="" class="nav-item nav-link">Project</a>
+            <a href="/profile" class="nav-item nav-link">Profile</a>
             <a href="contact.html" class="nav-item nav-link">Contact</a>
 
             <!-- Bouton de déconnexion -->
