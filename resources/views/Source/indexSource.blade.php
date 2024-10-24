@@ -11,7 +11,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -58,7 +58,7 @@
                 <input type="text" id="search-input" class="form-control" placeholder="Rechercher par nom de source...">
             </div>
         <div class="custom-container">
-            
+
             <h2 class="custom-title text-center mb-4"><i class="fas fa-solar-panel"></i>Liste des sources d'énergie renouvelable</h2>
             @if(auth()->user()->name === 'Admin')
 
@@ -75,7 +75,6 @@
                             <th>Nom de la source</th>
                             <th>Description</th>
                             <th>Puissance Max (kW)</th>
-                            <th>Date de commission</th>
                             <th>Type d'énergie</th>
                             <th>Production éstimée(kWh)</th>
                             <th>Coût d'installation(€)</th>
@@ -92,13 +91,12 @@
                             <td>{{ $source->nom_renouv }}</td>
                             <td>{{ $source->desc_renouv }}</td>
                             <td>{{ $source->puissMax_renouv }}</td>
-                            <td>{{ $source->date_renouv }}</td>
                             <td>{{ $source->typeE_renouv }}</td>
                             <td>{{ $source->prodEstime_renouv }}</td>
                             <td>{{ $source->coutInstall_renouv }}</td>
                             <td>{{ $source->impactCO2_renouv }}</td>
-                            <td>{{ $source->owner ? $source->owner->name : 'N/A' }}</td>
-                            
+                            <td >{{ $source->owner ? $source->owner->email : 'N/A' }}</td>
+
                             <td>
                             <a href="{{ route('source.show', $source->id) }}" class="btn btn-outline-info btn-sm">
                                 <i class="fas fa-eye"></i> Voir
@@ -174,7 +172,7 @@
 
             searchInput.addEventListener('keyup', function() {
                 const filter = searchInput.value.toLowerCase();
-                
+
                 // Boucle à travers toutes les lignes du tableau
                 for (let i = 1; i < rows.length; i++) { // Commencer à 1 pour ignorer l'en-tête
                     const cells = rows[i].getElementsByTagName('td');

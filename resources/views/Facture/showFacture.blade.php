@@ -19,7 +19,7 @@
 
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Consommateur : {{ $facture->owner->name ?? 'N/A' }}</h5>
+            <h5 class="card-title">Consommateur : {{ $facture->owner->email ?? 'N/A' }}</h5>
             <p>Date de facturation : {{ $facture->date_facture }}</p>
             <p>Période de facturation : {{ $facture->periode_facture }}</p>
             <p>Consommation CO2 Totale : {{ $facture->consommation_totale }} kWh</p>
@@ -77,7 +77,7 @@
     document.getElementById('calculate-preview').addEventListener('click', function() {
         var sourceId = document.getElementById('source').value;
         var factureId = {{ $facture->id }};
-        
+
         // Appel Ajax pour obtenir les nouveaux montants
         fetch(`/facture/${factureId}/calculate-source`, {
             method: 'POST',
@@ -107,7 +107,7 @@
     document.getElementById('save-facture').addEventListener('click', function() {
         var sourceId = document.getElementById('source').value;
         var factureId = {{ $facture->id }};
-        
+
         fetch(`/facture/${factureId}/add-source`, {
             method: 'POST',
             headers: {

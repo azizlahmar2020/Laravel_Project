@@ -98,7 +98,7 @@
                     <option value="">Choisir un propriétaire</option>
                     @foreach ($users as $user)
                         <option value="{{ $user->id }}" {{ old('consommateur', $transport->consommateur) == $user->id ? 'selected' : '' }}>
-                            {{ $user->name }}
+                            {{ $user->email }}
                         </option>
                     @endforeach
                 </select>

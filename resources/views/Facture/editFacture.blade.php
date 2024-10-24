@@ -58,7 +58,7 @@
         <select class="form-control" id="consommateur" name="consommateur">
             <option value="">Choisir le consommateur</option>
             @foreach($users as $user)
-                <option value="{{ $user->id }}" {{ $user->id == $facture->consommateur ? 'selected' : '' }}>{{ $user->name }}</option>
+                <option value="{{ $user->id }}" {{ $user->id == $facture->consommateur ? 'selected' : '' }}>{{ $user->email }}</option>
             @endforeach
         </select>
         @error('consommateur')

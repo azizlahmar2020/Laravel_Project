@@ -93,7 +93,7 @@
     <select class="form-control" id="consommateur" name="consommateur">
         <option value="">Choisir un propriétaire</option>
         @foreach($users as $user)
-            <option value="{{ $user->id }}">{{ $user->name }}</option>
+            <option value="{{ $user->id }}">{{ $user->email }}</option>
         @endforeach
     </select>
 </div>
@@ -104,8 +104,8 @@
                 <output>0</output> km
             </div>
 
-         
-            
+
+
 
             <!-- Duration Field -->
             <div class="mb-3">

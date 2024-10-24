@@ -71,7 +71,6 @@
                     <thead class="table-light">
                         <tr>
                             <th>Consommateur</th>
-                            <th>Date de Facture</th>
                             <th>Période de Facture</th>
                             <th>Consommation Totale (kWh)</th>
                             <th>Prix Unitaire (€)</th>
@@ -88,8 +87,7 @@
                     <tbody>
                         @foreach ($factures as $facture)
                         <tr id="facture-{{ $facture->id }}">
-                        <td>{{ $facture->owner ? $facture->owner->name : 'N/A' }}</td>
-                        <td>{{ $facture->date_facture }}</td>
+                        <td>{{ $facture->owner ? $facture->owner->email : 'N/A' }}</td>
                             <td>{{ $facture->periode_facture }}</td>
                             <td>{{ $facture->consommation_totale }}</td>
                             <td>{{ $facture->prix_unitaire }}</td>
@@ -109,7 +107,7 @@
                                     <button type="submit" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash"></i> </button>
                                 </form>
                                 <a href="{{ route('facture.exportPdf', $facture->id) }}" class="btn btn-outline-primary btn-sm">
-        <i class="fas fa-file-pdf"></i> 
+        <i class="fas fa-file-pdf"></i>
        @endif
     </a>
                             </td>
@@ -165,7 +163,7 @@
                 }
             }
         });
-       
+
         document.getElementById('search-input').addEventListener('keyup', function() {
             let searchValue = this.value.toLowerCase();
             let rows = document.querySelectorAll('#facture-table tbody tr');

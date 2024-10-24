@@ -98,7 +98,7 @@
                 </div>
 
                 <div class="col-md-6">
-                   
+
                     <!-- Production Estimée Field -->
                     <div class="mb-3">
                         <label for="prodEstime_renouv" class="form-label custom-label"><i class="fas fa-chart-line icon"></i> Production éstimée (kWh)</label>
@@ -117,7 +117,7 @@
                         <input type="number" class="form-control" id="impactCO2_renouv" name="impactCO2_renouv" >
                     </div>
 
-                 
+
                     <!-- Propriétaire Field (Owner) -->
               <!-- Propriétaire Field (Updated to show dropdown list) -->
 <div class="mb-3">
@@ -125,7 +125,7 @@
     <select class="form-control" id="proprio_renouv" name="proprio_renouv">
         <option value="">Select Owner</option>
         @foreach($users as $user)
-            <option value="{{ $user->id }}">{{ $user->name }}</option>
+            <option value="{{ $user->id }}">{{ $user->email }}</option>
         @endforeach
     </select>
 </div>

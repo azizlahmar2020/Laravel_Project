@@ -8,8 +8,9 @@
         @if (session('success'))
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
-
+        @if(auth()->user()->name === 'Admin')
         <a href="{{ route('energyconso.create') }}" class="btn btn-primary">Ajouter une consommation d'énergie</a>
+        @endif
 
         <table class="table mt-3">
             <thead>

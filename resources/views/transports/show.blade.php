@@ -11,7 +11,7 @@
 
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+
     <!-- Custom Stylesheet -->
     <link href="/css/style.css" rel="stylesheet">
 
@@ -35,7 +35,7 @@
 
     <div class="card">
         <div class="card-header">
-            Propriétaire : {{ $transport->owner->name ?? 'N/A' }}
+            Propriétaire : {{ $transport->owner->email ?? 'N/A' }}
         </div>
         <div class="card-body">
             <p><strong>Type de transport :</strong> {{ $transport->type }}</p>

@@ -45,7 +45,7 @@
     <div class="container mt-5 custom-container">
         <h2 class="custom-title"><i class="fas fa-file-invoice"></i> Ajouter une facture</h2>
 
-       
+
 
         <!-- Form to create a new facture -->
         <form action="{{ route('facture.store') }}" method="POST">
@@ -61,7 +61,7 @@
     <select class="form-control" id="consommateur" name="consommateur" >
         <option value="">Choisir le consommateur</option>
         @foreach($users as $user)
-            <option value="{{ $user->id }}">{{ $user->name }}</option>
+            <option value="{{ $user->id }}">{{ $user->email }}</option>
         @endforeach
     </select>
 </div>

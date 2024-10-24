@@ -86,7 +86,7 @@
                         <tbody>
                             @foreach ($transports as $transport)
                                 <tr id="transport-{{ $transport->id }}">
-                                    <td>{{ $transport->owner ? $transport->owner->name : 'N/A' }}</td>
+                                    <td>{{ $transport->owner ? $transport->owner->email : 'N/A' }}</td>
                                     <td>{{ $transport->type }}</td>
                                     <td>{{ $transport->distance }}</td>
                                     <td>{{ $transport->emissions_CO2 }}</td>
@@ -94,7 +94,7 @@
                                     <td>{{ $transport->duration }}</td>
                                     @if(auth()->user()->name === 'Admin')
                                     <td>
-                                
+
             <a href="{{ route('transports.show', $transport->id) }}" class="btn btn-outline-info btn-sm"><i class="fas fa-eye"></i></a>
                                         <!-- Edit button -->
                                         <a href="{{ route('transports.editTransport', $transport->id) }}" class="btn btn-outline-warning btn-sm"><i class="fas fa-edit"></i> </a>
@@ -104,7 +104,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-outline-danger btn-sm">
-                                                <i class="fas fa-trash-alt"></i> 
+                                                <i class="fas fa-trash-alt"></i>
                                             </button>
                                         </form>
                                     </td>
@@ -171,7 +171,7 @@ function sortTable(columnIndex, order) {
     rows.sort((a, b) => {
         const aText = a.cells[columnIndex].textContent.trim();
         const bText = b.cells[columnIndex].textContent.trim();
-        
+
         const aValue = parseFloat(aText) || aText; // Utiliser float pour les chiffres, ou la valeur brute pour le texte
         const bValue = parseFloat(bText) || bText;
 
