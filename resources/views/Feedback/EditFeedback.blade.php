@@ -48,7 +48,17 @@
     <div class="container">
         <div class="feedback-form-container">
             <h2>Edit Feedback</h2>
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
             <form action="{{ route('feedback.update', $feedback->id) }}" method="POST">
+
                 @csrf
                 @method('PUT')
 
