@@ -60,13 +60,14 @@
         <div class="custom-container">
             
             <h2 class="custom-title text-center mb-4"><i class="fas fa-solar-panel"></i>Liste des sources d'énergie renouvelable</h2>
+            @if(auth()->user()->name === 'Admin')
 
             <div class="text-end mb-3">
                 <a href="{{ route('source.create') }}" class="btn btn-success mb-3" id="add-source-btn">
                     <i class="fas fa-plus"></i>Ajouter une Source
                 </a>
             </div>
-
+@endif
             <div class="table-responsive">
                 <table class="table table-hover align-middle" id="source-table">
                     <thead class="table-light">
@@ -80,7 +81,9 @@
                             <th>Coût d'installation(€)</th>
                             <th>Impact de CO2 (tonnes)</th>
                             <th>Consommateur</th>
+                            @if(auth()->user()->name === 'Admin')
                             <th>Actions</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -100,6 +103,7 @@
                             <a href="{{ route('source.show', $source->id) }}" class="btn btn-outline-info btn-sm">
                                 <i class="fas fa-eye"></i> Voir
                             </a>
+                            @if(auth()->user()->name === 'Admin')
 
                                 <a href="{{ route('source.edit', $source->id) }}" class="btn btn-outline-warning btn-sm">
                                     <i class="fas fa-edit"></i> Edit
@@ -111,6 +115,7 @@
                                         <i class="fas fa-trash"></i> Delete
                                     </button>
                                 </form>
+@endif
                             </td>
                         </tr>
                         @endforeach

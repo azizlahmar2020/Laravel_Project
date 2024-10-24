@@ -81,10 +81,12 @@
             </div>
 
             <!-- Bouton pour ajouter un nouveau fournisseur -->
+            @if(auth()->user()->name === 'Admin')
+
             <div class="text-end mb-3">
                 <a href="{{ route('fournisseurs.create') }}" class="btn btn-success mb-3" id="add-fournisseur-btn"><i class="fas fa-plus"></i> Add New Fournisseur</a>
             </div>
-
+            @endif
             <!-- Table pour afficher la liste des fournisseurs -->
             <table class="table table-hover align-middle" id="fournisseur-table">
                 <thead class="table-light">
@@ -92,7 +94,10 @@
                         <th>Nom du Fournisseur</th>
                         <th>Type d'Énergie</th>
                         <th>Tarif</th>
+                        @if(auth()->user()->name === 'Admin')
                         <th>Actions</th>
+                        @endif
+
                         <th>Conseils</th>
                     </tr>
                 </thead>
@@ -102,13 +107,16 @@
                         <td>{{ $fournisseur->nom }}</td>
                         <td>{{ ucfirst($fournisseur->type) }}</td>
                         <td>{{ $fournisseur->tarif }} €</td>
+                        @if(auth()->user()->name === 'Admin')
                         <td>
+
                             <a href="{{ route('fournisseurs.edit', $fournisseur->id) }}" class="btn btn-outline-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
                             <form action="{{ route('fournisseurs.destroy', $fournisseur->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>
                             </form>
+                            @endif
                         </td>
                         <td>
                             <a href="{{ route('conseils.fournisseur', $fournisseur->id) }}" class="btn btn-info btn-sm"><i class="fas fa-lightbulb"></i> Conseils</a>

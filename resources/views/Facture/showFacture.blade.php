@@ -31,12 +31,14 @@
             <p>Statut : {{ $facture->statut }}</p>
 
             <!-- Add Renewable Source Button -->
+            @if(auth()->user()->name === 'Admin')
+
             <div class="text-end mb-3">
                 <button id="preview-facture" class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#renewableSourceDropdown" aria-expanded="false" aria-controls="renewableSourceDropdown">
                     Ajouter une source renouvelable
                 </button>
             </div>
-
+@endif
             <!-- Dropdown List for Renewable Source -->
             <div class="collapse" id="renewableSourceDropdown">
                 <div class="card card-body">
@@ -51,7 +53,6 @@
                             </select>
                         </div>
                         <button type="button" id="calculate-preview" class="btn btn-info">Aperçu des changements</button>
-                        <button type="submit" class="btn btn-success">Ajouter</button>
                     </form>
                 </div>
             </div>

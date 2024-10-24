@@ -19,7 +19,9 @@
                     <th>Huile de chauffage (litres)</th>
                     <th>Énergie solaire (kWh)</th>
                     <th>Période</th>
+                    @if(auth()->user()->name === 'Admin')
                     <th>Actions</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -31,7 +33,8 @@
                         <td>{{ $consumption->solar_energy_generated }}</td>
                         <td>{{ $consumption->period }}</td>
                         <td>
-                            <a href="{{ route('energyconso.edit', $consumption->id) }}" class="btn btn-outline-secondary">
+                        @if(auth()->user()->name === 'Admin')
+                        <a href="{{ route('energyconso.edit', $consumption->id) }}" class="btn btn-outline-secondary">
                                 <i class="fas fa-edit"></i>
                             </a>
                             <form id="delete-form-{{ $consumption->id }}"
@@ -44,6 +47,7 @@
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </form>
+                            @endif
                             <button type="button" class="btn btn-outline-info" data-bs-toggle="modal"
                                 data-bs-target="#carbonModal{{ $consumption->id }}">
                                 <i class="fas fa-leaf"></i>

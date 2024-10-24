@@ -51,6 +51,7 @@
 
         <div class="custom-container">
             <h2 class="custom-title"><i class="fas fa-bus icon"></i> Liste des Transports</h2>
+            @if(auth()->user()->name === 'Admin')
 
             <div class="text-end mb-3">
                 <a href="{{ route('transports.create') }}" class="btn btn-success mb-3">
@@ -60,7 +61,7 @@
                     <i class="fas fa-chart-line"></i> Statistiques
                 </a>
             </div>
-
+@endif
 
             <!-- Check if there are any transports -->
             @if($transports->isEmpty())
@@ -76,7 +77,9 @@
                             <th>Emission de CO2 (g) <i class="fas fa-sort-up" onclick="sortTable(3, 'asc')"></i> <i class="fas fa-sort-down" onclick="sortTable(3, 'desc')"></i></th>
                             <th>Coût ($) <i class="fas fa-sort-up" onclick="sortTable(4, 'asc')"></i> <i class="fas fa-sort-down" onclick="sortTable(4, 'desc')"></i></th>
                             <th>Durée (heure) <i class="fas fa-sort-up" onclick="sortTable(5, 'asc')"></i> <i class="fas fa-sort-down" onclick="sortTable(5, 'desc')"></i></th>
+                            @if(auth()->user()->name === 'Admin')
                             <th>Actions</th>
+                            @endif
                         </tr>
                     </thead>
 
@@ -89,6 +92,7 @@
                                     <td>{{ $transport->emissions_CO2 }}</td>
                                     <td>{{ $transport->cost }}</td>
                                     <td>{{ $transport->duration }}</td>
+                                    @if(auth()->user()->name === 'Admin')
                                     <td>
                                 
             <a href="{{ route('transports.show', $transport->id) }}" class="btn btn-outline-info btn-sm"><i class="fas fa-eye"></i></a>
@@ -104,6 +108,7 @@
                                             </button>
                                         </form>
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

@@ -90,10 +90,12 @@
             </div>
 
             <!-- Button to create new ConseilE -->
+            @if(auth()->user()->name === 'Admin')
+
             <div class="text-end mb-3">
                 <a href="{{ route('conseils.create') }}" class="btn btn-success mb-3" id="add-conseil-btn"><i class="fas fa-plus"></i> Ajouter Nouveau Conseil</a>
             </div>
-
+@endif
             <!-- Table to display the list of conseils -->
             <table class="table table-hover align-middle" id="conseil-table">
                 <thead class="table-light">
@@ -112,12 +114,15 @@
                         <td>{{ $conseilE->fournisseur ? $conseilE->fournisseur->nom : 'Non spécifié' }}</td> <!-- Afficher le nom du fournisseur -->
                         <td>
                             <!-- Action buttons -->
+                            @if(auth()->user()->name === 'Admin')
+
                             <a href="{{ route('conseils.edit', $conseilE->id) }}" class="btn btn-outline-warning btn-sm"><i class="fas fa-edit"></i> Éditer</a>
                             <form action="{{ route('conseils.destroy', $conseilE->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash"></i> Supprimer</button>
                             </form>
+                            @endif
                             <!-- QR Code button -->
                             <button class="btn btn-outline-info btn-sm" onclick="generateQRCodeForText('{{ $conseilE->description }}', {{ $conseilE->economies }}, {{ $conseilE->id }})"><i class="fas fa-qrcode"></i> QR Code</button>
                             <div class="qr-code" id="qr-code-{{ $conseilE->id }}"></div>

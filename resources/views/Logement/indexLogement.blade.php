@@ -59,10 +59,12 @@
                     <input type="text" id="search-input" class="form-control" placeholder="Rechercher un Logement...">
                 </div>
             </div>
+            @if(auth()->user()->name === 'Admin')
 
             <div class="col-md-8 text-end">
                 <a href="{{ route('Logement.create') }}" class="btn btn-success mb-3" id="add-logement-btn"><i class="fas fa-plus"></i> Add New Logement</a>
             </div>
+            @endif
         </div>
 
         <div class="table-responsive">
@@ -95,7 +97,10 @@
                                 @endif
                             </a>
                         </th>
+                        @if(auth()->user()->name === 'Admin')
+
                         <th>Actions</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -111,6 +116,8 @@
                             <td>{{ ucfirst($logement->type) }}</td>
                             <td>{{ $logement->superficie }} m²</td>
                             <td>{{ $logement->nbr_habitant }}</td>
+                            @if(auth()->user()->name === 'Admin')
+
                             <td>
                                 <a href="{{ route('Logement.edit', $logement->id) }}" class="btn btn-outline-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
                                 <form action="{{ route('Logement.destroy', $logement->id) }}" method="POST" style="display:inline;">
@@ -119,6 +126,7 @@
                                     <button type="submit" class="btn btn-outline-danger btn-sm"><i class="fas fa-trash"></i> Delete</button>
                                 </form>
                             </td>
+                            @endif
                         </tr>
                         @endforeach
                     @endif

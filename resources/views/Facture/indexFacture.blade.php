@@ -60,11 +60,12 @@
             <h2 class="custom-title text-center mb-4"><i class="fas fa-file-invoice"></i> Listes des factures</h2>
 
 
+            @if(auth()->user()->name === 'Admin')
 
             <div class="text-end mb-3">
                 <a href="{{ route('facture.create') }}" class="btn btn-success mb-3" id="add-facture-btn"><i class="fas fa-plus"></i> Ajouter une Facture</a>
             </div>
-
+@endif
             <div class="table-responsive">
                 <table class="table table-hover align-middle" id="facture-table">
                     <thead class="table-light">
@@ -79,7 +80,9 @@
                             <th>Émission de Carbone (tonnes)</th>
                             <th>Moyen de Paiement</th>
                             <th>Statut</th>
+                            @if(auth()->user()->name === 'Admin')
                             <th>Actions</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -98,7 +101,8 @@
 
                             <td>
                             <a href="{{ route('facture.show', $facture->id) }}" class="btn btn-outline-info btn-sm"><i class="fas fa-eye"></i> </a>
-                                <a href="{{ route('facture.edit', $facture->id) }}" class="btn btn-outline-warning btn-sm"><i class="fas fa-edit"></i> </a>
+                            @if(auth()->user()->name === 'Admin')
+                            <a href="{{ route('facture.edit', $facture->id) }}" class="btn btn-outline-warning btn-sm"><i class="fas fa-edit"></i> </a>
                                 <form action="{{ route('facture.destroy', $facture->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
@@ -106,6 +110,7 @@
                                 </form>
                                 <a href="{{ route('facture.exportPdf', $facture->id) }}" class="btn btn-outline-primary btn-sm">
         <i class="fas fa-file-pdf"></i> 
+       @endif
     </a>
                             </td>
                         </tr>

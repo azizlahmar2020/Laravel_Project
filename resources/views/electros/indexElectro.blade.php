@@ -49,10 +49,14 @@
                             <input type="text" id="search-input" class="form-control" placeholder="Rechercher un Electros...">
                         </div>
                     </div>
+                    
                     <div class="col-md-8 text-end"> <!-- Colonne pour le bouton d'ajout -->
+                    @if(auth()->user()->name === 'Admin')
+
                         <a href="{{ route('Electros.create') }}" class="btn btn-success mb-3" id="add-electro-btn">
                             <i class="fas fa-plus"></i> Add New Electro
                         </a>
+                        @endif
                         <button class="btn btn-info mb-3" id="showStatistics">
                             <i class="fas fa-chart-bar"></i> Voir Statistiques
                         </button>
@@ -72,7 +76,10 @@
                                 <th>Durée</th>
                                 <th>Consommation</th>
                                 <th>Logement</th>
+                                @if(auth()->user()->name === 'Admin')
+
                                 <th>Actions</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -83,6 +90,8 @@
                                 <td>{{ $electro->duree }} h</td>
                                 <td>{{ $electro->consomation }} kWh</td>
                                 <td>{{ $electro->logement->address ?? 'N/A' }}</td>
+                                @if(auth()->user()->name === 'Admin')
+
                                 <td>
                                     <a href="{{ route('electros.editElectro', $electro->id_electro) }}" class="btn btn-outline-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
                                     <form action="{{ route('Electros.destroy', $electro->id_electro) }}" method="POST" style="display:inline-block;">
@@ -91,6 +100,7 @@
                                         <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure?');"><i class="fas fa-trash"></i> Delete</button>
                                     </form>
                                 </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>
@@ -188,4 +198,5 @@
 
     @include('frontoffice.footer') <!-- Footer inclus dans le body -->
 </body>
+
 </html>
