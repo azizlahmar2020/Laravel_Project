@@ -1,4 +1,7 @@
 <x-guest-layout>
+<div class="flex justify-center mt-6">
+        <img src="{{ asset('img/solar-logo.jpg') }}" alt="Solar Logo" class="w-24 h-24">
+    </div>
     <div class="mb-4 text-sm text-gray-600">
         {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
     </div>

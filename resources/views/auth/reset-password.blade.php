@@ -1,4 +1,7 @@
 <x-guest-layout>
+<div class="flex justify-center mt-6">
+        <img src="{{ asset('img/solar-logo.jpg') }}" alt="Solar Logo" class="w-24 h-24">
+    </div>
     <form method="POST" action="{{ route('password.store') }}">
         @csrf
 
